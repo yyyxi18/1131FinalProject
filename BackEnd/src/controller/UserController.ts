@@ -3,7 +3,7 @@ import { Request, response, Response } from "express";
 import { UserService } from "../Service/UserService";
 import { resp } from "../utils/resp";
 import { DBResp } from "../interfaces/DBResp";
-import { Student } from "../interfaces/Student";
+import { PeopleRun } from "../interfaces/PeopleRun";
 require('dotenv').config()
 
 export class UserController extends Contorller {
@@ -14,15 +14,15 @@ export class UserController extends Contorller {
         this.service = new UserService();
     }
 
-    public async findAll(Request: Request, Response: Response) {
+    public async getAll(Request: Request, Response: Response) {
 
-        const res: resp<Array<DBResp<Student>> | undefined> = {
+        const res: resp<Array<DBResp<PeopleRun>> | undefined> = {
             code: 200,
             message: "",
             body: undefined
         }
 
-        const dbResp = await this.service.getAllStudents();
+        const dbResp = await this.service.getAllPeople();
         if (dbResp) {
             res.body = dbResp;
             res.message = "find sucess";

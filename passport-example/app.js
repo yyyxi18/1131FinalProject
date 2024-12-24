@@ -2,7 +2,6 @@
  * 新增Passport中介層與Session初始化
  */
 const session = require('express-session');
-const passport = require('passport');
 
 // Session 初始化
 app.use(session({

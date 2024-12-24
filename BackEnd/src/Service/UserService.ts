@@ -1,7 +1,7 @@
 import { Service } from "../abstract/Service";
-import { Student } from "../interfaces/Student";
+import { PeopleRun } from "../interfaces/PeopleRun";
 import { logger } from "../middlewares/log";
-import { studentsModel } from "../orm/schemas/studentSchemas";
+import { peopleModel } from "../orm/schemas/peopleSchemas";
 import { Document } from "mongoose"
 import { MongoDB } from "../utils/MongoDB";
 import { DBResp } from "../interfaces/DBResp";
@@ -15,9 +15,9 @@ type seatInfo = {
 
 export class UserService extends Service {
 
-    public async getAllStudents(): Promise<Array<DBResp<Student>>|undefined> {
+    public async getAllPeople(): Promise<Array<DBResp<PeopleRun>>|undefined> {
         try {
-            const res:Array<DBResp<Student>> = await studentsModel.find({});
+            const res:Array<DBResp<PeopleRun>> = await peopleModel.find({});
             return res;
         } catch (error) {
             return undefined;
@@ -30,10 +30,10 @@ export class UserService extends Service {
      * @param info 學生資訊
      * @returns resp
      */
-    public async insertOne(info: Student): Promise<resp<DBResp<Student>|undefined>>{
+    public async insertOne(info: PeopleRun): Promise<resp<DBResp<PeopleRun>|undefined>>{
 
-        const current = await this.getAllStudents()
-        const resp:resp<DBResp<Student>|undefined> = {
+        const current = await this.getAllPeople()
+        const resp:resp<DBResp<PeopleRun>|undefined> = {
             code: 200,
             message: "",
             body: undefined
@@ -41,15 +41,15 @@ export class UserService extends Service {
 
         if (current && current.length>0) {
             try{
-                const nameValidator = await this.userNameValidator(info.userName);
+                const nameValidator = await this.userNameValidator(info.name);
                 if (current.length>=200) {
                     resp.message = "student list is full";
                     resp.code = 403;
                 }else{
                     if (nameValidator === "驗證通過") {
-                        info.sid = String(current.length+1) ;
+                        info.no = String(current.length+1) ;
                         info._id = undefined;
-                        const res = new studentsModel(info);
+                        const res = new peopleModel(info);
                         resp.body = await res.save();
                     }else{
                         resp.code = 403;
@@ -126,11 +126,11 @@ export class UserService extends Service {
      * @returns boolean
      */
     public async existingSeatNumbers(SeatNumber:string):Promise<boolean>{
-        const students = await this.getAllStudents();
+        const students = await this.getAllPeople();
         let exist = false
         if (students) {
-            students.forEach((student)=>{
-                const info = this.userNameFormator(student.userName)
+            students.forEach((people)=>{
+                const info = this.userNameFormator(people.name)
                 if (info.seatNumber === SeatNumber) {
                     exist = true;
                 }
