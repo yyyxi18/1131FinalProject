@@ -17,8 +17,8 @@ export class UserRoute extends Route {
     protected setRoutes(): void {
 
         /**
-         * 新增一筆參賽者資料
-         * request body: { name: string, age: number, team: string }
+         * 新增參賽者資料
+         * 
          */
         this.router.post(`${this.url}addPerson`, (req, res) => {
             const { name, phone, gender, email } = req.body;

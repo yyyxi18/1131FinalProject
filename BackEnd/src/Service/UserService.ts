@@ -22,7 +22,6 @@ export class UserService extends Service {
         } catch (error) {
             return undefined;
         }
-
     }
 
     /**
