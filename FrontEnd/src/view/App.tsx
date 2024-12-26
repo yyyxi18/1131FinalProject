@@ -17,7 +17,7 @@ function App() {
      */
     if (!cache.current) {
       cache.current = true;
-      asyncGet(api.findAll).then((res: resp<Array<Student>>) => {
+      asyncGet(api.getAll).then((res: resp<Array<Student>>) => {
         if (res.code == 200) {
           setStudents(res.body)
         }
