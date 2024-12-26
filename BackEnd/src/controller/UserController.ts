@@ -1,6 +1,6 @@
 import { Contorller } from "../abstract/Contorller";
 import { Request, Response } from "express";
-import { UserService } from "../Service/AdminService";
+import { UserService } from "../Service/UserService";
 import { resp } from "../utils/resp";
 import { DBResp } from "../interfaces/DBResp";
 import { PeopleRun } from "../interfaces/PeopleRun";
@@ -16,41 +16,30 @@ export class UserController extends Contorller {
     }
 
     /**
-     * 獲取所有參賽者
+     * 新增參賽者資料
      * @param req Express Request
      * @param res Express Response
      */
-    public async getAll(req: Request, res: Response): Promise<void> {
-        const resBody: resp<Array<DBResp<PeopleRun>> | undefined> = {
-            code: 200,
-            message: "",
-            body: undefined,
-        };
-
+    public async addPerson(req: Request, res: Response): Promise<void> {
         try {
-            const dbResp = await this.service.getAllPeople();
-            if (dbResp) {
-                resBody.body = dbResp;
-                resBody.message = "Find success";
-                res.status(200).json(resBody);
-            } else {
-                resBody.code = 404;
-                resBody.message = "No data found";
-                res.status(404).json(resBody);
-            }
+            const newPerson = new peopleModel(req.body);
+            const savedPerson = await newPerson.save();
+
+            res.status(201).json({
+                message: "Person added successfully",
+                person: savedPerson,
+            });
         } catch (error) {
-            resBody.code = 500;
-            resBody.message = `Server error: ${error}`;
-            res.status(500).json(resBody);
+            res.status(500).json({ message: `Error adding person: ${error}` });
         }
     }
 
     /**
-     * 查詢一筆參賽者資料
+     * 查詢參賽者自己的報名資料
      * @param req Express Request
      * @param res Express Response
      */
-    public async getPersonByID(req: Request, res: Response): Promise<void> {
+    public async getUserDataByID(req: Request, res: Response): Promise<void> {
         const id = req.query.id as string;
 
         if (!id) {
@@ -94,24 +83,4 @@ export class UserController extends Contorller {
             res.status(500).json({ message: `Error deleting person: ${error}` });
         }
     }
-
-    /**
-     * 新增參賽者
-     * @param req Express Request
-     * @param res Express Response
-     
-    public async insertOne(req: Request, res: Response): Promise<void> {
-        try {
-            const newPerson = new peopleModel(req.body);
-            const savedPerson = await newPerson.save();
-
-            res.status(201).json({
-                message: "Person added successfully",
-                person: savedPerson,
-            });
-        } catch (error) {
-            res.status(500).json({ message: `Error adding person: ${error}` });
-        }
-    }
-        */
 }
