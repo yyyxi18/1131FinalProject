@@ -22,13 +22,16 @@ export class UserController extends Contorller {
      */
     public async addPerson(req: Request, res: Response): Promise<void> {
         try {
-            const newPerson = new peopleModel(req.body);
-            const savedPerson = await newPerson.save();
+            const result = await this.service.addPerson(req.body);
 
-            res.status(201).json({
-                message: "Person added successfully",
-                person: savedPerson,
-            });
+            if (result.code === 200) {
+                res.status(201).json({
+                    message: "Person added successfully",
+                    person: result.body,
+                });
+            } else {
+                res.status(result.code).json({ message: result.message });
+            }
         } catch (error) {
             res.status(500).json({ message: `Error adding person: ${error}` });
         }
@@ -64,7 +67,7 @@ export class UserController extends Contorller {
      * @param req Express Request
      * @param res Express Response
      */
-    public async deletePersonByID(req: Request, res: Response): Promise<void> {
+    public async cancelRunByID(req: Request, res: Response): Promise<void> {
         const id = req.query.id as string;
 
         if (!id) {
@@ -77,10 +80,35 @@ export class UserController extends Contorller {
             if (!deletedPerson) {
                 res.status(404).json({ message: "Person not found" });
             } else {
-                res.status(200).json({ message: "Person deleted successfully" });
+                res.status(200).json({ message: "Person canceled successfully" });
             }
         } catch (error) {
             res.status(500).json({ message: `Error deleting person: ${error}` });
+        }
+    }
+
+    /**
+     * 更新參賽者資料
+     * @param req Express Request
+     * @param res Express Response
+     */
+    public async updateUserByID(req: Request, res: Response): Promise<void> {
+        const id = req.query.id as string;
+
+        if (!id) {
+            res.status(400).json({ message: "ID is required" });
+            return;
+        }
+
+        try {
+            const updatedPerson = await peopleModel.findByIdAndUpdate(id, req.body, { new: true });
+            if (!updatedPerson) {
+                res.status(404).json({ message: "Person not found" });
+            } else {
+                res.status(200).json({ message: "Person updated successfully", person: updatedPerson });
+            }
+        } catch (error) {
+            res.status(500).json({ message: `Error updating person: ${error}` });
         }
     }
 }

@@ -21,15 +21,9 @@ export class UserRoute extends Route {
          * 
          */
         this.router.post(`${this.url}addPerson`, (req, res) => {
-            const { name, phone, gender, email } = req.body;
-
-            // 確保所有必要的欄位都存在
-            if (!name || !phone || !gender || !email) {
-            return res.status(400).json({ error: "name, phone, gender and email are required" });
-            }
-
             this.Contorller.addPerson(req, res);
         });
+        
 
         /**
          * 查詢一筆參賽者資料
@@ -50,8 +44,8 @@ export class UserRoute extends Route {
         /**
          * 刪除一筆參賽者資料
          * request query: id (string)
-         
-        this.router.delete(`${this.url}deletePersonByID`, (req, res) => {
+         */
+        this.router.delete(`${this.url}cancelRunByID`, (req, res) => {
             // 將 id 從 req.query 中解析
             const id = req.query.id as string;
 
@@ -60,9 +54,21 @@ export class UserRoute extends Route {
             return res.status(400).json({ error: "ID is required" });
             }
 
-            this.Contorller.deletePersonByID(req, res);
+            this.Contorller.cancelRunByID(req, res);
         });
-        */
+        /**
+         * 更新參賽者資料
+         * request body: { id: string, data: any }
+         */
+        this.router.put(`${this.url}updateUserByID`, (req, res) => {
+            const id = req.query.id as string;
+            // 確保 id 和 data 存在後再調用 Controller 方法
+            if (!id || !req.body) {
+            return res.status(400).json({ error: "ID and data are required" });
+            }
+
+            this.Contorller.updateUserByID(req, res);
+        });
 
         
 

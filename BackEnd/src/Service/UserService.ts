@@ -102,11 +102,11 @@ export class UserService extends Service {
     }
 
     /**
-     * 刪除一筆用戶
+     * 參賽者取消報名
      * @param id 用戶 _id
      * @returns resp<any>
      */
-    public async deletePersonByID(id: string): Promise<resp<any>> {
+    public async cancelRunByID(id: string): Promise<resp<any>> {
         const resp: resp<any> = {
             code: 200,
             message: "",
@@ -121,7 +121,7 @@ export class UserService extends Service {
                 resp.message = "No user found with the provided ID";
             } else {
                 resp.body = result;
-                resp.message = "User deleted successfully";
+                resp.message = "User cancel successfully";
             }
         } catch (error) {
             resp.code = 500;
@@ -166,6 +166,44 @@ export class UserService extends Service {
         }
 
         return '驗證通過';
+    }
+
+    /**
+     * 更新參賽者資料
+     * @param id 用戶 _id
+     * @param info 更新的參賽者資料
+     * @returns resp<any>
+     */
+    public async updateUserByID(id: string, info: PeopleRun): Promise<resp<any>> {
+        const resp: resp<any> = {
+            code: 200,
+            message: "",
+            body: null,
+        };
+
+        try {
+            const nameValidator = await this.validatePersonData(info);
+            if (nameValidator !== "驗證通過") {
+                resp.code = 403;
+                resp.message = nameValidator;
+                return resp;
+            }
+
+            const result = await peopleModel.findByIdAndUpdate(id, info, { new: true });
+
+            if (!result) {
+                resp.code = 404;
+                resp.message = "No user found with the provided ID";
+            } else {
+                resp.body = result;
+                resp.message = "User updated successfully";
+            }
+        } catch (error) {
+            resp.code = 500;
+            resp.message = `Server error: ${error}`;
+        }
+
+        return resp;
     }
 
 
