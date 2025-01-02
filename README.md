@@ -125,7 +125,7 @@
 #### 2. 透過id查詢一筆參賽者資料
 **請求方式**: `GET`
 
-**端點**： `/api/v1/admin/getPersonByID?id= (mongoDB裡的id_)`
+**端點**： `/api/v1/admin/getPersonByID?id= (mongoDB裡的_id)`
 
 **回應範例**:
 ```json
