@@ -6,6 +6,7 @@ import cors from 'cors';
 import { MongoDB } from './utils/MongoDB';
 import session from 'express-session'; // 用於管理會話
 import passport from './config/passport'; // 引入 Passport 配置
+import auth from './routers/auth'; // 引入 auth 路由
 require('dotenv').config();
 
 const app: express.Application = express();
@@ -50,6 +51,7 @@ app.use(session({
 // 初始化 Passport
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(auth);
 
 // 加載路由
 for (const route of router) {
@@ -60,3 +62,7 @@ for (const route of router) {
 server.listen(process.env.PORT, () => {
   logger.info('listening on *:' + process.env.PORT);
 });
+
+
+
+

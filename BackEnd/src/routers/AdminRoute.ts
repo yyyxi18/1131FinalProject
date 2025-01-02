@@ -2,7 +2,7 @@ import { Route } from "../abstract/Route";
 import { UserController } from "../controller/AdminController";
 import { logger } from "../middlewares/log";
 
-export class UserRoute extends Route {
+export class AdminRoute extends Route {
 
     protected url: string;
     protected Contorller: UserController; // 修正 Contorller 定義的名稱大小寫
