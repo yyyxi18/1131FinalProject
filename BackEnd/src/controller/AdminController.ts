@@ -1,13 +1,19 @@
 import { Contorller } from "../abstract/Contorller";
-import { Request, Response } from "express";
+//import { Request, Response } from "express";
 import { UserService } from "../Service/AdminService";
 import { resp } from "../utils/resp";
 import { DBResp } from "../interfaces/DBResp";
 import { PeopleRun } from "../interfaces/PeopleRun";
 import { peopleModel } from "../orm/schemas/peopleSchemas";
+import { Request, Response } from "express-serve-static-core";
+import { ParsedQs } from "qs";
+
 require('dotenv').config();
 
 export class UserController extends Contorller {
+    addPerson(req: Request<{}, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>, number>) {
+        throw new Error("Method not implemented.");
+    }
     protected service: UserService;
 
     constructor() {
@@ -50,7 +56,8 @@ export class UserController extends Contorller {
      * @param req Express Request
      * @param res Express Response
      */
-    public async getPersonByID(req: Request, res: Response): Promise<void> {
+    public async getPersonByID(req: Request<{}, any, any, ParsedQs>,
+        res: Response): Promise<void> {
         const id = req.query.id as string;
 
         if (!id) {

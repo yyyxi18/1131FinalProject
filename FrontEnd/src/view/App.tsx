@@ -2,12 +2,12 @@ import { useEffect, useRef, useState } from 'react'
 import '../style/App.css'
 import { asyncGet } from '../utils/fetch'
 import { api } from '../enum/api'
-import { Student } from '../interface/Student'
+import { People } from '../interface/People'
 import { resp } from '../interface/resp'
 
 function App() {
 
-  const [students, setStudents] = useState<Array<Student>>([])
+  const [students, setStudents] = useState<Array<People>>([])
 
   const cache = useRef<boolean>(false)
 
@@ -17,7 +17,7 @@ function App() {
      */
     if (!cache.current) {
       cache.current = true;
-      asyncGet(api.getAll).then((res: resp<Array<Student>>) => {
+      asyncGet(api.getAll).then((res: resp<Array<People>>) => {
         if (res.code == 200) {
           setStudents(res.body)
         }
@@ -25,17 +25,14 @@ function App() {
     }
   }, [])
 
-  const studentList = students ? students.map((student: Student) => {
+  const studentList = students ? students.map((people: People) => {
     return (
-      <div className='student' key={student._id}>
-        <p>帳號: {student.userName}</p>
-        <p>座號: {student.sid}</p>
-        <p>姓名: {student.name}</p>
-        <p>院系: {student.department}</p>
-        <p>年級: {student.grade}</p>
-        <p>班級: {student.class}</p>
-        <p>Email: {student.Email}</p>
-        <p>缺席次數: {student.absences ? student.absences : 0}</p>
+      <div className='student' key={people._id}>
+        <p>序號: {people.no}</p>
+        <p>姓名: {people.name}</p>
+        <p>電話: {people.phone}</p>
+        <p>性別: {people.gender}</p>
+        <p>Email: {people.email}</p>
       </div>
     )
   }) : "loading"

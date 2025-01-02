@@ -1,6 +1,7 @@
 import { Route } from "../abstract/Route";
 import { UserController } from "../controller/AdminController";
 import { logger } from "../middlewares/log";
+import { Request, Response } from "express";
 
 export class AdminRoute extends Route {
 
@@ -26,9 +27,9 @@ export class AdminRoute extends Route {
          * 查詢一筆參賽者資料
          * request query: id (string)
          */
-        this.router.get(`${this.url}getPersonByID`, (req, res) => {
+        this.router.get(`${this.url}getPersonByID`,(req, res) => {
             // 將 id 從 req.query 中解析
-            const id = req.query.id as string;
+            const {id} = req.query;
 
             // 確保 id 存在後再調用 Controller 方法
             if (!id) {
