@@ -95,120 +95,72 @@
 ---
 
 ## API 規格說明
-`mongoDemo/src/Service/UserService.ts`
-### 1. 查詢所有學生資料(取得所有資料，並按照座號排序)
+
+### 管理員的3支API
+`BackEnd/src/Service/AdminService.ts`
+#### 1. 獲取所有參賽者資料(取得所有資料，並按照No.排序)
 
 **請求方式**: `GET`
 
-**端點**: `/api/v1/user/findAll`
+**端點**: `/api/v1/admin/getAll`
 
 **回應範例**:
 ```json
 {
   "code": 200,
-  "message": "find success",
+  "message": "Find success",
   "body": [
     {
-      "_id": "6759060c8080b5e17e4d101d",
-            "userName": "tkuee0787",
-            "sid": "1",
-            "name": "張佳慧",
-            "department": "電機工程系",
-            "grade": "四年級",
-            "class": "A",
-            "Email": "tkuee0787@tkuim.com"
+            "_id": "676a6904ec679e721fb5d15a",
+            "no": "1",
+            "name": "林佳慧",
+            "phone": "0944015675",
+            "gender": "男",
+            "email": "user1@test.com"
     }
   ]
 }
 ```
 
-### 2. 新增學生資料
-**請求方式**: `POST`
+#### 2. 透過id查詢一筆參賽者資料
+**請求方式**: `GET`
 
-**端點**： `/api/v1/user/insertOne`
-
-**請求 Body**:
-```json
-{
-  "userName": "tkuim8765",
-  "name": "姚育祺",
-  "department": "資訊管理學系",
-  "grade": "三",
-  "class": "C",
-  "email": "yaoyuci@gmail.com"
-}
-```
+**端點**： `/api/v1/admin/getPersonByID?id= (mongoDB裡的id_)`
 
 **回應範例**:
 ```json
 {
-  "code": 200,
-    "message": "",
-    "body": {
-        "userName": "tkuim8765",
-        "sid": "54",
-        "name": "姚育祺",
-        "department": "資訊管理學系",
-        "grade": "三",
-        "class": "C",
-        "Email": "yaoyuci@gmail.com",
-        "absences": 0,
-        "_id": "67622a45f7ab6cd3084cf8a8",
-        "__v": 0
-  }
+    "code": 200,
+    "message": "Find success",
+    "body": [
+        {
+              "_id": "676a6904ec679e721fb5d15e",
+              "no": "5",
+              "name": "王淑芬",
+              "phone": "0923017890",
+              "gender": "女",
+              "email": "user5@test.com"
+    }
+  ]
 }
 ```
 
-### 3. 刪除學生資料（透過 id刪除學生）
+#### 3. 刪除參賽者資料（透過 id刪除）
 **請求方式**： `DELETE`
 
-**端點**： `/api/v1/user/deleteById`
+**端點**： `/api/v1/admin/deletePersonByID`
 
 **回應範例**:
 - 成功刪除
   ```json
   {
-    "code": 200,
-    "message": "sucess",
-    "body": {
-        "acknowledged": true,
-        "deletedCount": 0
-    }
-  }
+       code: 200,
+       message: "",
+       body: null,
+  
+  };
   ```
 
-### 4. 更新學生名稱（透過id索引編輯學生資料）
-**請求方式**: `PUT`
-
-**端點**: `/api/v1/user/updateNameById`
-
-**請求 Body**:
-```json
-{
-    "id": "67618b31de2a3d02cddbd931",
-    "name":"TEST"
-}
-```
-
-**回應範例**:
-```json
-{
-    "code": 200,
-    "message": " update sucess",
-    "body": {
-        "_id": "67618b31de2a3d02cddbd931",
-        "userName": "tkuim9999",
-        "sid": "53",
-        "name": "TEST",
-        "department": "資訊管理學系",
-        "grade": "三",
-        "class": "C",
-        "Email": "yaoyuci@gmail.com",
-        "absences": 0,
-        "__v": 0
-    }
-}
-```
 
 ---
 
