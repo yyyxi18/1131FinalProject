@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from '../style/Mainpage.css';  // 引入 CSS 文件
 import { NavigationLink } from './NavigationLink';
-import { CountdownDisplay } from './CountdownDisplay';
+import { CountdownDisplay } from '../view/CountDown';
 
 const navigationItems = ['活動簡章', '活動路線', '線上客服', '登入'];
 
@@ -35,3 +35,5 @@ export const Mainpage: React.FC = () => {
     </div>
   );
 }
+
+export default Mainpage;

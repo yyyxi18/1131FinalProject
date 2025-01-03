@@ -5,6 +5,9 @@ import { api } from '../enum/api';
 import { People } from '../interface/People';
 import { resp } from '../interface/resp';
 import { LoginPage } from './LoginPage'; // 引入 LoginPage
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import MarathonBanner from '../view/EnterPage'; // Banner 頁面
+import NextPage from '../view/Mainpage'; // 目標頁面
 
 function App() {
   const [students, setStudents] = useState<Array<People>>([]);
@@ -36,34 +39,18 @@ function App() {
     }
   };
 
-  const studentList = students.length > 0 ? (
-    students.map((people: People) => (
-      <div className="student" key={people._id}>
-        <p>序號: {people.no}</p>
-        <p>姓名: {people.name}</p>
-        <p>電話: {people.phone}</p>
-        <p>性別: {people.gender}</p>
-        <p>Email: {people.email}</p>
-      </div>
-    ))
-  ) : (
-    <p>Loading...</p>
-  );
-
-  return (
-    <>
-      {isLoggedIn ? (
-        <div className="container">
-          {studentList}
-        </div>
-      ) : (
-        <div>
-          {errorMessage && <p className="error-message">{errorMessage}</p>} {/* 顯示錯誤訊息 */}
-          <LoginPage onLogin={handleLogin} /> {/* 傳入登入處理函數 */}
-        </div>
-      )}
-    </>
-  );
+//轉化頁面
+return (
+  <Router>
+    <Routes>
+      <Route path="/" element={<MarathonBanner />} />
+      <Route path="/nextpage" element={<NextPage />} />
+    </Routes>
+  </Router>
+);
 }
+
+
+  
 
 export default App;
