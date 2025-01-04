@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from './Marathon.module.css';
+import styles from '../style/Marathon.module.css';
 import { NavigationLinkProps } from '../interface/types';
 
 export const NavigationLink: React.FC<NavigationLinkProps> = ({ text }) => (

@@ -48,10 +48,10 @@ export const Mainpage: React.FC = () => {
 
       <div className={styles.heroImage}></div>
 
-      <div className={styles.sloganContainer}>
+     <div className={styles.sloganContainer}>
         <div className={styles.slogan}>怕輸 ! 還不快跑</div>
         <div className={styles.slogan}>怕輸 ! 還不快跑</div>
-      </div>
+      </div> 
 
       <div className={styles.actionButtons}>
         <button className={styles.registerButton} tabIndex={0}>報名</button>

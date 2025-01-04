@@ -5,7 +5,7 @@
   top: 131px;
   left: 50%;
   transform: translateX(-50%);
-  background: url('images/banner.jpg') lightgray 50% / cover no-repeat;
+  background: url('../assets/Main.jpg') lightgray 50% / cover no-repeat;
 }
 
 
@@ -184,6 +184,39 @@
   cursor: pointer;
   padding: 0;
 }
+
+/* 模糊背景樣式 */
+.blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(10px); /* 模糊效果 */
+  background-color: rgba(255, 255, 255, 0.2); /* 半透明遮罩，讓模糊更明顯 */
+  z-index: -1; /* 背景層級設置為底層 */
+}
+/* 登入.css*/
+.flex-container {
+  display: flex;
+  gap: 10px; /* 元素間距 */
+  background-color: #f0f0f0;
+  padding: 20px;
+}
+
+.box {
+  width: 541px;
+  height: 642px;
+  flex-shrink: 0; /* 不縮小 */
+  background-color: #007BFF;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  text-align: center;
+}
+
 
 @media (max-width: 991px) {
   .countdownSection {

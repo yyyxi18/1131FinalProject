@@ -1,6 +1,6 @@
 //倒數
 import React, { useEffect, useState } from 'react';
-import styles from '../style/Marathon.css';
+import styles from '../style/Marathon.module.css';
 import { TimerBox } from '../view/TimeBox';
 
 export const Countdown: React.FC = () => {
@@ -39,8 +39,4 @@ export const Countdown: React.FC = () => {
 };
 
 
-<<<<<<< HEAD
 export default Countdown;
-=======
-export default Countdown;
->>>>>>> 1401c362bd289cd71ffba3d9a743614e76785d87
