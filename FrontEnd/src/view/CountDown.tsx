@@ -1,15 +1,42 @@
 //倒數
-import React from 'react';
-import styles from './Marathon.module.css';
-import { TimerBox } from './TimerBox';
-import { CountdownDisplayProps } from './types';
+import React, { useEffect, useState } from 'react';
+import styles from '../style/Marathon.css';
+import { TimerBox } from '../view/TimeBox';
 
-export const CountdownDisplay: React.FC<CountdownDisplayProps> = ({ hours, minutes, seconds }) => (
-  <div className={styles.countdown}>
-    <TimerBox value={hours} />
-    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/d3e6050c9b31471f0665d02d7795395388dd785841c1865721620049b8da7c38?placeholderIfAbsent=true&apiKey=2ae34a784b504fd09cd9cc5215760974" className={styles.separator} alt="" />
-    <TimerBox value={minutes} />
-    <img loading="lazy" src="https://cdn.builder.io/api/v1/image/assets/TEMP/4d5c5284ae65f76f083d232fb9984f0435a45fb7d9669208cd4ad9481476d4c2?placeholderIfAbsent=true&apiKey=2ae34a784b504fd09cd9cc5215760974" className={styles.separator} alt="" />
-    <TimerBox value={seconds} />
-  </div>
-);
+export const Countdown: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const targetDate = new Date('2025-07-24T00:00:00');
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        setTimeLeft({ hours, minutes, seconds });
+      } else {
+        clearInterval(interval);
+        setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+  return (
+    <div className={styles.countdown}>
+      <TimerBox value={timeLeft.hours} />
+      <span className={styles.unit}>小時</span>
+      <TimerBox value={timeLeft.minutes} />
+      <span className={styles.unit}>分鐘</span>
+      <TimerBox value={timeLeft.seconds} />
+      <span className={styles.unit}>秒</span>
+    </div>
+  );
+};
+
+
+export default Countdown;
