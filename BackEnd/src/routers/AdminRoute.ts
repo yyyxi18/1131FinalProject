@@ -27,7 +27,7 @@ export class AdminRoute extends Route {
          * 查詢一筆參賽者資料
          * request query: id (string)
          */
-        this.router.get(`${this.url}getPersonByID`,(req, res) => {
+        this.router.get(`${this.url}getPersonByID`,(req :Request, res: Response) => {
             // 將 id 從 req.query 中解析
             const {id} = req.query;
 
@@ -43,7 +43,7 @@ export class AdminRoute extends Route {
          * 刪除一筆參賽者資料
          * request query: id (string)
          */
-        this.router.delete(`${this.url}deletePersonByID`, (req, res) => {
+        this.router.delete(`${this.url}deletePersonByID`, (req: Request, res: Response) => {
             // 將 id 從 req.query 中解析
             const id = req.query.id as string;
 

@@ -6,12 +6,6 @@ var auth = express.Router();
 auth.get('/google', passport.authenticate('google', {
     scope: ['email', 'profile'] // 要求的 Google OAuth 資訊
 }));
-const routers = express.Router();
-
-// Google OAuth 起始點
-auth.get('/google', passport.authenticate('google', {
-    scope: ['email', 'profile'] // 要求的 Google OAuth 資訊
-}));
 
 // Google OAuth 回呼點
 auth.get('/google/callback', 

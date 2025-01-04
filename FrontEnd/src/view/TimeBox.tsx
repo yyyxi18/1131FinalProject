@@ -1,6 +1,6 @@
 //數字組件
 import React from 'react';
-import styles from '../style/TimeBox.modul.css';
+import styles from '../style/TimeBox.module.css';
 
 interface TimerBoxProps {
   value: number; // 傳入的數值
