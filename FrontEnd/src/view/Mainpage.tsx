@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // 引入 Link 用於導航
 import styles from '../style/Mainpage.module.css';  // 引入 CSS 文件
-import { NavigationLink } from '../view/NavigationLink';
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 
@@ -27,8 +27,12 @@ export const Mainpage: React.FC = () => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  const navigationItems = ['活動簡章', '活動路線', '線上客服', '登入'];
-
+  const navigationItems = [
+    { text: '活動簡章', path: '/activity-details' },
+    { text: '活動路線', path: '/route-map' },
+    { text: '線上客服', path: '/online-service' },
+    { text: '登入', path: '/login' }
+  ];
   return (
     <div className={styles.container}>
       <Helmet>
@@ -59,8 +63,10 @@ export const Mainpage: React.FC = () => {
       </div>
 
       <nav className={styles.navigation}>
-        {navigationItems.map((item) => (
-          <NavigationLink key={item} text={item} />
+        {navigationItems.map(({ text, path }) => (
+          <Link key={path} to={path} className={styles.navigationLink}>
+            {text}
+          </Link>
         ))}
       </nav>
     </div>
