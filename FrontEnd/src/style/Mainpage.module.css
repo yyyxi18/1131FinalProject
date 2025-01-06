@@ -6,8 +6,17 @@
   left: 50%;
   transform: translateX(-50%);
   background: url('../assets/Main.jpg') lightgray 50% / cover no-repeat;
+
 }
 
+/* 背景做模糊 */
+.heroImagefilter{
+  width: 1283px;
+height: 841px;
+flex-shrink: 0;
+background: rgba(33, 33, 33, 0.30);
+backdrop-filter: blur(15px);
+}
 
 .container {
   background-color: rgb(251, 245, 245);
@@ -101,6 +110,7 @@
   top: 131px;
   height: 423px;
 }
+
 
 .sloganContainer {
   position: absolute;

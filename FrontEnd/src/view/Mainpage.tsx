@@ -3,10 +3,14 @@ import { Link } from 'react-router-dom'; // 引入 Link 用於導航
 import styles from '../style/Mainpage.module.css';  // 引入 CSS 文件
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
+import { useNavigate } from 'react-router-dom';
+
 
 export const Mainpage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const targetDate = new Date('2025-07-24T00:00:00');  // 設定倒數目標日期
+
+  const navigate = useNavigate(); // 使用 useNavigate
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -58,8 +62,16 @@ export const Mainpage: React.FC = () => {
       </div> 
 
       <div className={styles.actionButtons}>
-        <button className={styles.registerButton} tabIndex={0}>報名</button>
-        <button className={styles.modifyButton} tabIndex={0}>修改與查詢</button>
+        <button className={styles.registerButton} 
+        tabIndex={0}
+        onClick={() => navigate ('/login')}>
+          報名
+          </button>
+
+        <button className={styles.modifyButton} tabIndex={0}
+        onClick={() => navigate ('/edit')}>
+          修改與查詢
+          </button>
       </div>
 
       <nav className={styles.navigation}>

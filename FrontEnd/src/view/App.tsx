@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-
 import '../style/App.css';
 import { asyncGet } from '../utils/fetch';
 import { api } from '../enum/api';
@@ -9,10 +8,11 @@ import { LoginPage } from './LoginPage'; // 引入 LoginPage
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ActivityPage from '../view/ActivityPage';
 import Mainpage from '../view/Mainpage'; // 主頁面
+import EnterPage from '../view/EnterPage';
 import LoginMainPage from '../view/LoginMainPages'; //登入
 import MapPage from '../view/MapPage'; //地圖
 import OnlineService from '../view/OnlineService'; //線上客服
-import EnterPage from '../view/EnterPage';
+import Edit from './Edit';
 
 function App() {
   const [students, setStudents] = useState<Array<People>>([]);
@@ -53,7 +53,9 @@ return (
     <Route path="/activity" element={<ActivityPage />} />  
     <Route path="/map" element={<MapPage />} />  
       <Route path="/login" element={<LoginMainPage />} />  
-      <Route path="/onlineService" element={<OnlineService />} />  
+      <Route path="/onlineService" element={<OnlineService />} /> 
+      <Route path="/edit" element={<Edit />} />  
+      <Route path="/" element={<Mainpage />} />  
     </Routes>
   </Router>
 );
