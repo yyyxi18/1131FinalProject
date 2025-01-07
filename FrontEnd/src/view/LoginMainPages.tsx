@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // 引入 useNavigate
-import styles from '../style/Mainpage.module.css';  // 引入 CSS 文件
+import { Link, useNavigate } from 'react-router-dom';
+import styles from '../style/Mainpage.module.css'; // 引入 CSS 文件
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
+import { GoogleLogin } from '@react-oauth/google';
 
 export const LoginMainPage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
@@ -28,21 +29,15 @@ export const LoginMainPage: React.FC = () => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  const navigationItems = [
-    { text: '活動簡章', path: '/activity' },
-    { text: '活動路線', path: '/map' },
-    { text: '線上客服', path: '/onlineservice' },
-    { text: '登入', path: '/login' }
-  ];
-
-  // 訪客登入
-  const handleQuickLogin = () => {
-    navigate('/Mainpage'); // 跳轉到 Mainpage 頁面
+  // Google 登入成功處理
+  const handleGoogleLoginSuccess = (response: any) => {
+    console.log('Google Login Success:', response);
+    navigate('/Mainpage'); // 登入成功後跳轉至主頁面
   };
 
   // 跳轉到其他頁面
   const handleAnotherButtonClick = () => {
-    navigate('/LoginMainPage'); // 跳轉到指定頁面
+    navigate('/Main); // 跳轉到指定頁面
   };
 
   return (
@@ -65,21 +60,18 @@ export const LoginMainPage: React.FC = () => {
       <div className={styles.heroImage}></div>
 
       <div className={styles.sloganContainer}>
-        <div className={styles.slogan}>怕輸 ! 還不快跑</div>
-        <div className={styles.slogan}>怕輸 ! 還不快跑</div>
+        <div className={styles.slogan}>歡迎登入</div>
       </div>
 
       <div className={styles.actionButtons}>
-        <button className={styles.registerButton} tabIndex={0}>報名</button>
-        <button className={styles.modifyButton} tabIndex={0}>修改與查詢</button>
+        <GoogleLogin
+          onSuccess={handleGoogleLoginSuccess}
+          onError={handleGoogleLoginFailure}
+        />
       </div>
 
       <nav className={styles.navigation}>
-        {navigationItems.map(({ text, path }) => (
-          <Link key={path} to={path} className={styles.navigationLink}>
-            {text}
-          </Link>
-        ))}
+        <Link to="/" className={styles.navigationLink}>返回主頁</Link>
       </nav>
 
       <div className={styles.flexContainer}>登入</div>

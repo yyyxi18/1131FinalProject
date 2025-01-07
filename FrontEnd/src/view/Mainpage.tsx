@@ -5,7 +5,6 @@ import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
 
-
 export const Mainpage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const targetDate = new Date('2025-07-24T00:00:00');  // 設定倒數目標日期

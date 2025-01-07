@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../style/MarathonBanner.css';
+import styles from '../style/MarathonBanner.module.css';
 import { TimerBox } from '../view/TimeBox';
 
 interface CountdownProps {

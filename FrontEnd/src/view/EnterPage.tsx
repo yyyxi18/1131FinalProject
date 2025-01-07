@@ -1,7 +1,7 @@
 //進入頁
 
 import React from 'react';
-import '../style//MarathonBanner.css'; // 引入 CSS 檔案
+import '../style/MarathonBanner.module.css'; // 引入 CSS 檔案
 import { useNavigate } from 'react-router-dom'; // React Router 的導航 hook
 
 const EnterPage: React.FC = () => {

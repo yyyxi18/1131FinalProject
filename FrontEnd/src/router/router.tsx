@@ -1,9 +1,9 @@
-import { createHashRouter } from "react-router-dom";
+import { createBrowserRouter } from 'react-router-dom';
 import EnterPage from "../view/EnterPage";
 import Mainpage from "../view/Mainpage";
 import App from '../view/App';
 
-const router = createHashRouter([
+const router = createBrowserRouter([
   {
     path: "/0",
     element: <EnterPage />,
@@ -13,9 +13,9 @@ const router = createHashRouter([
     element: <Mainpage />,
   },
   {
-    path: "/",
+    path: "*",
     element: <App />,
   },
 ]);
 
-export default router;  // 使用 default 匯出
+export default router;
