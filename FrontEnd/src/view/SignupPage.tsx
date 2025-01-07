@@ -1,5 +1,5 @@
-//編輯
-//還沒連資料庫
+//報名
+//還沒連後端
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -8,7 +8,7 @@ import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 
 
-export const Edit: React.FC = () => {
+export const SignupPage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const targetDate = new Date('2025-07-24T00:00:00'); // 設定倒數目標日期
   const navigate = useNavigate();
@@ -86,7 +86,7 @@ export const Edit: React.FC = () => {
         </div>
 
         <button className=".buttonsign " onClick={handleAnotherButtonClick}>
-          確定
+          報名
         </button>
 
 
@@ -98,4 +98,4 @@ export const Edit: React.FC = () => {
   );
 };
 
-export default Edit ;
+export default SignupPage ;

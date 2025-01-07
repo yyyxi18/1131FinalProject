@@ -1,0 +1,161 @@
+.heroImage {
+    width: 1280px;
+    height: 423px;
+    position: absolute;
+    top: 131px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: url('../assets/Main.jpg') lightgray 50% / cover no-repeat;
+
+}
+
+.sloganContainer {
+    width: 800px;
+    height: 93px;
+    flex-shrink: 0;
+    -webkit-text-stroke-width: 2;
+    -webkit-text-stroke-color: #FE8104;
+    font-family: "Kdam Thmor Pro";
+    font-size: 96px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120px;
+    /* 125% */
+    letter-spacing: 9.6px;
+}
+
+.slogan {
+    left: 18;
+    flex: 1;
+    border: 2px solid rgb(254, 129, 4);
+}
+
+.slogan2 {
+    left: 20;
+    flex: 1;
+    border: 2px solid rgb(254, 129, 4);
+}
+
+/* 模糊背景樣式 */
+.blur-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 841vw;
+    height: 1283vh;
+    backdrop-filter: blur(10px);
+    /* 模糊效果 */
+    background-color: rgba(255, 255, 255, 0.2);
+    /* 半透明遮罩，讓模糊更明顯 */
+    z-index: 1;
+    /* 背景層級*/
+}
+
+/* 登入.css*/
+.flexContainer {
+    display: flex;
+    gap: 10px;
+    /* 元素間距 */
+    background-color: #f7cb9f;
+    padding: 20px;
+    width: 541px;
+    height: 86px;
+    flex-shrink: 2;
+    z-index: 1;
+    /* 背景層級*/
+}
+
+.flexContainerWord {
+    color: #000;
+    font-family: Anybody;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    /* 111.111% */
+}
+
+.box {
+    position: absolute;
+    /* 使用絕對定位 */
+    top: 50px;
+    /* 距離父容器顶部 50px */
+    /* left: 100px; 距離父容器左側 100px */
+    width: 541px;
+    /* 設定盒子的寬度為 541 像素 */
+    height: 642px;
+    /* 設定盒子的高度為 642 像素 */
+    flex-shrink: 0;
+    /* 禁止盒子在父容器中因空間不足被壓縮 */
+    background-color: #ffffff;
+    /* 設定盒子的背景顏色為白色 */
+    color: black;
+    /* 設定盒子內文字的顏色為黑色 */
+    font-size: 20px;
+    display: flex;
+    /* 設定盒子為彈性佈局 */
+    justify-content: center;
+    /* 水平居中對齊子元素 */
+    align-items: center;
+    /* 垂直居中對齊子元素 */
+    text-align: center;
+    /* 設定文字的對齊方式為居中 */
+    z-index: 2;
+    /* 背景層級*/
+}
+
+.boxGoogle {
+    width: 100px;
+    height: 100px;
+    flex-shrink: 0;
+    fill: #d9d9d9;
+    color: #ea0909;
+    font-size: 64px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 120px;
+}
+
+.boxWord {
+    top: 426px;
+    width: 176px;
+    color: rgba(0, 0, 0, 0.51);
+    font-family: Anybody;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    /* 200% */
+    text-align: center;
+}
+
+.boxLine {
+    top: 338px;
+    width: 304px;
+    left: 109.95px;
+    right: 340px;
+    width: 91.049px;
+    height: 3px;
+    background: #D9D9D9;
+}
+
+.boxLine2 {
+    top: 338px;
+    width: 304px;
+    left: 348.5px;
+    right: 101.45px;
+    width: 91.049px;
+    height: 3px;
+    background: #D9D9D9;
+}
+
+.boxLine3 {
+    top: 228px;
+    width: 4034px;
+    left: 206px;
+    right: 206px;
+    width: 129px;
+    height: 1px;
+    flex-shrink: 0;
+    background: #fe8104;
+}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // 引入 Link 用於導航
-import styles from '../style/Mainpage.module.css';  // 引入 CSS 文件
+import '../style/Mainpage.css';  // 引入 CSS 文件
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
@@ -37,45 +37,47 @@ export const Mainpage: React.FC = () => {
     { text: '登入', path: '/login' }
   ];
   return (
-    <div className={styles.container}>
-      <Helmet>
-        <title>怕輸還不快跑</title>
-      </Helmet>
+   <div>
+         <Helmet>
+           <title>怕輸還不快跑</title>
+         </Helmet>
+   
+         <div className="countdownSection">
+           <div className="deadlineText">剩餘報名截止日期</div>
+           <Countdown
+             hours={timeLeft.hours}
+             minutes={timeLeft.minutes}
+             seconds={timeLeft.seconds}
+           />
+         </div>
+   
+         <h1 className="title">2025 TKU IM </h1>
+         <h1 className="title">MARATHON </h1>
+   
+         <div className="heroImage">
+           <div className="sloganContainer">
+             <div className="slogan">怕輸 ! 還不快跑</div>
+             <div className="slogan2">怕輸 ! 還不快跑</div>
+           </div>
+         </div>
 
-      <div className={styles.countdownSection}>
-        <div className={styles.deadlineText}>剩餘報名截止日期</div>
-        <Countdown
-          hours={timeLeft.hours}
-          minutes={timeLeft.minutes}
-          seconds={timeLeft.seconds}
-        />
-      </div>
-
-      <h1 className={styles.title}>2025 TKU IM marathon</h1>
-
-      <div className={styles.heroImage}></div>
-
-     <div className={styles.sloganContainer}>
-        <div className={styles.slogan}>怕輸 ! 還不快跑</div>
-        <div className={styles.slogan}>怕輸 ! 還不快跑</div>
-      </div> 
-
-      <div className={styles.actionButtons}>
-        <button className={styles.registerButton} 
+      <div className=".actionButtons">
+        <button className=".registerButton"
         tabIndex={0}
         onClick={() => navigate ('/login')}>
           報名
           </button>
 
-        <button className={styles.modifyButton} tabIndex={0}
+        <button className=".modifyButton"
+        tabIndex={0}
         onClick={() => navigate ('/edit')}>
           修改與查詢
           </button>
       </div>
 
-      <nav className={styles.navigation}>
+      <nav className=".navigation">
         {navigationItems.map(({ text, path }) => (
-          <Link key={path} to={path} className={styles.navigationLink}>
+          <Link key={path} to={path} className=".navigationLink">
             {text}
           </Link>
         ))}

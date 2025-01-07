@@ -1,0 +1,20 @@
+.flexContainer {
+    display: flex;
+    width: 1280px;
+    height: 832px;
+    padding: 10px;
+    align-items: flex-start;
+    gap: 10px;
+    background: url('../assets/Frame.png') no-repeat center center / cover lightgray;
+
+  }
+  
+
+.go-word {
+        width: 72px;
+        height: 96px;
+        position: absolute;
+        right: 122px;
+        bottom: 59px;
+    }
+      

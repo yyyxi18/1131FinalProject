@@ -1,7 +1,7 @@
 //進入頁
 
 import React from 'react';
-import '../style/MarathonBanner.module.css'; // 引入 CSS 檔案
+import '../style/Enter.css'; // 引入 CSS 檔案
 import { useNavigate } from 'react-router-dom'; // React Router 的導航 hook
 
 const EnterPage: React.FC = () => {
@@ -12,17 +12,14 @@ const EnterPage: React.FC = () => {
     navigate('/Mainpage'); // 替換為目標頁面的路徑
   };
   return (
-    <div className="banner-container">
-      <div className="banner-title">
-        2025 TKU IM
-        <br />
-        MARATHO 
-      </div>
-      <button className='banner-subtitle' onClick={handleGoClick}>
-  Go
-</button>
+   <div>
+    <div className='.flexContainer'></div>
 
-    </div>
+      <button className='.go-word' onClick={handleGoClick}>
+       Go
+      </button>
+
+</div> 
   );
 };
 
