@@ -75,7 +75,11 @@ export const LoginMainPage: React.FC = () => {
         onError={handleGoogleLoginFailure}
       />
 
-      <div className="flexContainer">登入</div>
+      <div className=".flexContainer">
+        <div className=".flexContainerWord">
+          登入
+        </div>
+      </div>
       <div className="box">
         <div className="boxword">快速登入</div>
 

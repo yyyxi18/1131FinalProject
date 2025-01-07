@@ -12,7 +12,7 @@ import LoginMainPage from '../view/LoginMainPages'; //登入
 import MapPage from '../view/MapPage'; //地圖
 import OnlineService from '../view/OnlineService'; //線上客服
 import Edit from '../view/Edit';
-import SigupPage from '../view/SignupPage';
+import  SignupPage  from '../view/SignupPage';//報名
 import { GoogleOAuthProvider } from '@react-oauth/google';
 import { Routes, Route } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
@@ -58,7 +58,7 @@ function App() {
         <Route path="/onlineService" element={<OnlineService />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/" element={<Mainpage />} />
-        <Route path="/sigup" element={<SigupPage />} />
+        <Route path="/sigup" element={<SignupPage />} />
       </Routes>
     </div>
     //</GoogleOAuthProvider>

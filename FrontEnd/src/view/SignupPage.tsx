@@ -1,5 +1,5 @@
 //報名
-//還沒連後端
+//還沒連資料庫
 
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';

@@ -75,6 +75,46 @@
     /* 111.111% */
 }
 
+.boxLine {
+    left: 117;
+    top: 290;
+    width: 299.027px;
+    height: 2px;
+    width: 299.027px;
+    height: 2px;
+    box-shadow: 0px 4px 25px 0px rgb(254, 129, 4);
+}
+
+.boxLine2 {
+    left: 117;
+    top: 367;
+    width: 299.027px;
+    height: 2px;
+    width: 299.027px;
+    height: 2px;
+    box-shadow: 0px 4px 25px 0px rgb(254, 129, 4);
+}
+
+.boxLine3 {
+    left: 117;
+    top: 452;
+    width: 299.027px;
+    height: 2px;
+    width: 299.027px;
+    height: 2px;
+    box-shadow: 0px 4px 25px 0px rgb(254, 129, 4);
+}
+
+.boxLine4 {
+    left: 117;
+    top: 537;
+    width: 299.027px;
+    height: 2px;
+    width: 299.027px;
+    height: 2px;
+    box-shadow: 0px 4px 25px 0px rgb(254, 129, 4);
+}
+
 .box {
     position: absolute;
     /* 使用絕對定位 */
@@ -104,17 +144,6 @@
     /* 背景層級*/
 }
 
-.boxGoogle {
-    width: 100px;
-    height: 100px;
-    flex-shrink: 0;
-    fill: #d9d9d9;
-    color: #ea0909;
-    font-size: 64px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120px;
-}
 
 .boxWord {
     top: 426px;
@@ -129,33 +158,57 @@
     text-align: center;
 }
 
-.boxLine {
-    top: 338px;
-    width: 304px;
-    left: 109.95px;
-    right: 340px;
-    width: 91.049px;
-    height: 3px;
-    background: #D9D9D9;
+.boxWord2 {
+    left: 110;
+    top: 330;
+    color: #000;
+    font-family: Anybody;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    /* 200% */
 }
 
-.boxLine2 {
-    top: 338px;
-    width: 304px;
-    left: 348.5px;
-    right: 101.45px;
-    width: 91.049px;
-    height: 3px;
-    background: #D9D9D9;
+.boxWord3 {
+    left: 110;
+    top: 412;
+    color: #000;
+    font-family: Anybody;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    /* 200% */
 }
 
-.boxLine3 {
-    top: 228px;
-    width: 4034px;
-    left: 206px;
-    right: 206px;
-    width: 129px;
-    height: 1px;
+.boxWord4 {
+    left: 110;
+    top: 494;
+    color: #000;
+    font-family: Anybody;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    /* 200% */
+}
+
+.buttonsign {
+    width: 340px;
+    height: 57px;
     flex-shrink: 0;
-    background: #fe8104;
+    width: 340px;
+    height: 57px;
+    flex-shrink: 0;
+    width: 42px;
+    height: 40px;
+    flex-shrink: 0;
+    color: #FFFBFB;
+    font-family: Anybody;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 40px;
+    /* 200% */
 }
