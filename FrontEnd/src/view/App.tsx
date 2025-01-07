@@ -5,9 +5,16 @@ import { api } from '../enum/api';
 import { People } from '../interface/People';
 import { resp } from '../interface/resp';
 import { LoginPage } from './LoginPage'; // 引入 LoginPage
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import MarathonBanner from '../view/EnterPage'; // Banner 頁面
-import NextPage from '../view/Mainpage'; // 目標頁面
+import ActivityPage from '../view/ActivityPage';
+import Mainpage from '../view/Mainpage'; // 主頁面
+import EnterPage from '../view/EnterPage';
+import LoginMainPage from '../view/LoginMainPages'; //登入
+import MapPage from '../view/MapPage'; //地圖
+import OnlineService from '../view/OnlineService'; //線上客服
+import Edit from './Edit';
+import { GoogleOAuthProvider } from '@react-oauth/google';
+import { Routes, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
 function App() {
   const [students, setStudents] = useState<Array<People>>([]);
@@ -39,18 +46,21 @@ function App() {
     }
   };
 
-//轉化頁面
-return (
-  <Router>
-    <Routes>
-      <Route path="/" element={<MarathonBanner />} />
-      <Route path="/nextpage" element={<NextPage />} />
-    </Routes>
-  </Router>
-);
+  //轉化頁面
+  return (
+    //<GoogleOAuthProvider clientId="1072667935053-3q3h89f58iq9v2ss4uied1n6g7q3g68u.apps.googleusercontent.com">
+    <div>
+      <Routes>
+        <Route path="/activity" element={<ActivityPage />} />
+        <Route path="/map" element={<MapPage />} />
+        <Route path="/login" element={<LoginMainPage />} />
+        <Route path="/onlineService" element={<OnlineService />} />
+        <Route path="/edit" element={<Edit />} />
+        <Route path="/" element={<Mainpage />} />
+      </Routes>
+    </div>
+    //</GoogleOAuthProvider>
+  );
 }
-
-
-  
 
 export default App;
