@@ -42,7 +42,7 @@ export const LoginMainPage: React.FC = () => {
 
   // 跳轉到其他頁面
   const handleAnotherButtonClick = () => {
-    navigate('/another-page'); // 跳轉到指定頁面
+    navigate('/LoginMainPage'); // 跳轉到指定頁面
   };
 
   return (
@@ -85,17 +85,15 @@ export const LoginMainPage: React.FC = () => {
       <div className={styles.flexContainer}>登入</div>
       <div className={styles.box}>快速登入</div>
 
-      <button className={styles.boxGoogle}>
-        G
-      </button>
+      
 
       <button className={styles.quickLoginButton} onClick={handleQuickLogin}>
         訪客
       </button>
 
       {/* 新增按鈕並實現跳轉 */}
-      <button className={styles.anotherButton} onClick={handleAnotherButtonClick}>
-        跳轉到其他頁面
+      <button className={styles.boxGoogle} onClick={handleAnotherButtonClick}>
+        G
       </button>
 
       <div className={styles.boxLine}></div>
