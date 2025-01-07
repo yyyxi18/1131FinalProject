@@ -37,7 +37,7 @@ export const Mainpage: React.FC = () => {
     { text: '登入', path: '/login' }
   ];
   return (
-   <div>
+    <div className={styles.container}>
          <Helmet>
            <title>怕輸還不快跑</title>
          </Helmet>
