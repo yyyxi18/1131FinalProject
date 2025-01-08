@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // 引入 Link 用於導航
-import '../style/Mainpage.css';  // 引入 CSS 文件
+//import '../style/Mainpage.css';  // 引入 CSS 文件
+import styles from '../style/Mainpage.module.css'; // 引入 CSS 模塊
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';
@@ -37,7 +38,7 @@ export const Mainpage: React.FC = () => {
     { text: '登入', path: '/login' }
   ];
   return (
-   <div>
+    <div className={styles.container}>
          <Helmet>
            <title>怕輸還不快跑</title>
          </Helmet>

@@ -1,14 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/Mainpage.css'; // 改用非模組化的 CSS
+import '../style/Mainpage.module.css'; // 改用非模組化的 CSS
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
 export const LoginMainPage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const targetDate = new Date('2025-07-24T00:00:00'); // 設定倒數目標日期
   const navigate = useNavigate();
+  const handleGoogleLoginSuccess = async (response: any) => {
+    console.log('Google Login Success:', response);
+  
+    try {
+      // 假設 response.credential 包含 Google 返回的 JWT Token
+      const res = await axios.post('http://127.0.0.1:2004/google', {
+        token: response.credential,
+      });
+  
+      console.log('API 回應:', res.data);
+  
+      // 登入成功後跳轉至主頁面
+      navigate('/Mainpage');
+    } catch (error) {
+      console.error('Google 登入 API 發送失敗:', error);
+    }
+  };
+  
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,11 +48,6 @@ export const LoginMainPage: React.FC = () => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  // Google 登入成功處理
-  const handleGoogleLoginSuccess = (response: any) => {
-    console.log('Google Login Success:', response);
-    navigate('/Mainpage'); // 登入成功後跳轉至主頁面
-  };
 
   // 跳轉到其他頁面
   const handleAnotherButtonClick = () => {
