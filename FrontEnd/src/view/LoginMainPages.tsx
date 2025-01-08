@@ -47,7 +47,9 @@ export const LoginMainPage: React.FC = () => {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
+
+
       <Helmet>
         <title>怕輸還不快跑</title>
       </Helmet>

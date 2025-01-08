@@ -1,339 +1,163 @@
+/* 修改後的 CSS 文件 */
 .heroImage {
-  width: 1280px;
+  width: 100%;
   height: 423px;
   position: absolute;
   top: 131px;
   left: 50%;
   transform: translateX(-50%);
-  background: url('../assets/Main.jpg') lightgray 50% / cover no-repeat;
-
+  background: url('../assets/Main.jpg') lightgray center / cover no-repeat;
+  z-index: 0;
 }
 
-/* 背景做模糊 
-.heroImagefilter{
-  width: 1283px;
-height: 841px;
-flex-shrink: 0;
-background: rgba(33, 33, 33, 0.30);
-backdrop-filter: blur(15px);
+.heroImageFilter {
+  width: 100%;
+  height: 841px;
+  flex-shrink: 0;
+  background: rgba(33, 33, 33, 0.3);
+  backdrop-filter: blur(15px);
+  position: absolute;
+  z-index: -1;
 }
-*/
+
 .container {
   background-color: rgb(251, 245, 245);
   position: relative;
   display: flex;
-  align-items: start;
-  gap: 10px;
+  flex-direction: column;
+  align-items: center;
   overflow: hidden;
-  justify-content: start;
 }
 
 .countdownSection {
-  border-radius: 0;
+  border-radius: 10px;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   display: flex;
   min-width: 240px;
   flex-direction: column;
   white-space: nowrap;
   left: 45px;
-  bottom: 31px;
+  bottom: 50px;
   width: 466px;
-  height: 215px;
+  height: auto;
 }
 
 .deadlineText {
   border-radius: 10px;
   background-color: rgba(217, 217, 217, 0.76);
-  width: 415px;
-  max-width: 100%;
+  width: 100%;
   color: rgba(0, 0, 0, 0.96);
-  padding: 11px 47px;
-  font: 400 20px/2 Anybody, sans-serif;
+  padding: 15px 20px;
+  font: 400 20px/1.5 "Anybody", sans-serif;
+  text-align: center;
 }
 
 .countdown {
   display: flex;
   margin-top: 15px;
-  min-height: 141px;
   align-items: center;
-  gap: 21px;
+  gap: 15px;
   color: #fff;
   text-align: center;
-  justify-content: start;
-  font: 600 63px/1 PingFang SC, -apple-system, Roboto, Helvetica, sans-serif;
+  justify-content: center;
+  font: 600 50px/1 "PingFang SC", -apple-system, Roboto, Helvetica, sans-serif;
 }
-
 
 .timerBox {
   border-radius: 11px;
   background-color: rgba(0, 0, 0, 0.96);
-  align-self: stretch;
   overflow: hidden;
-  width: 105px;
-  height: 105px;
-  margin: auto 0;
-  padding: 0 15px;
+  width: 90px;
+  height: 90px;
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: center;
 }
 
 .separator {
-  aspect-ratio: 0.26;
-  object-fit: contain;
-  object-position: center;
   width: 8px;
-  align-self: stretch;
-  margin: auto 0;
+  height: 50px;
+  background-color: #fff;
 }
 
 .title {
   color: #000;
   position: absolute;
-  z-index: 0;
-  left: 18px;
-  top: 25px;
-  width: 400px;
-  height: 61px;
-  font: 400 48px/1 Anton SC, -apple-system, Roboto, Helvetica, sans-serif;
+  z-index: 1;
+  top: 20px;
+  text-align: center;
+  font: 400 48px/1 "Anton SC", -apple-system, Roboto, Helvetica, sans-serif;
 }
-
-/* .heroImage {
-  aspect-ratio: 3.03;
-  object-fit: contain;
-  object-position: center;
-  width: 1280px;
-  position: absolute;
-  z-index: 0;
-  right: 0;
-  top: 131px;
-  height: 423px;
-}
-*/
 
 .sloganContainer {
-  width: 800px;
-  height: 93px;
-  flex-shrink: 0;
-  -webkit-text-stroke-width: 2;
--webkit-text-stroke-color: #FE8104;
-font-family: "Kdam Thmor Pro";
-font-size: 96px;
-font-style: normal;
-font-weight: 400;
-line-height: 120px; /* 125% */
-letter-spacing: 9.6px;
-}
-
-.slogan {
-  left: 18;
-  flex: 1;
-  border: 2px solid rgb(254, 129, 4);
-}
-.slogan2 {
-  left: 20;
-  flex: 1;
-  border: 2px solid rgb(254, 129, 4);
+  width: 100%;
+  text-align: center;
+  font-family: "Kdam Thmor Pro";
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #FE8104;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #000;
 }
 
 .actionButtons {
   border-radius: 10px;
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   display: flex;
-  min-width: 240px;
   flex-direction: column;
-  color: rgb(255, 251, 251);
-  white-space: nowrap;
+  gap: 15px;
   right: 45px;
-  bottom: 49px;
-  width: 340px;
-  height: 155px;
-  padding: 2px 0;
-  font: 400 20px/2 Anybody, sans-serif;
+  bottom: 50px;
+  width: 240px;
+}
+
+.registerButton,
+.modifyButton {
+  border-radius: 10px;
+  padding: 15px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
 }
 
 .registerButton {
-  border-radius: 10px;
-  background-color: rgb(254, 129, 4);
-  padding: 11px 34px;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  width: 100%;
+  background-color: #FE8104;
 }
 
 .modifyButton {
-  border-radius: 10px;
   background-color: rgba(254, 129, 4, 0.6);
-  margin-top: 37px;
-  padding: 11px 34px;
-  border: none;
-  color: inherit;
-  cursor: pointer;
-  width: 100%;
 }
 
 .navigation {
   position: absolute;
-  z-index: 0;
+  z-index: 1;
   display: flex;
-  min-width: 240px;
-  gap: 40px 45px;
+  gap: 20px;
   color: #000;
-  white-space: nowrap;
-  letter-spacing: 2.4px;
-  flex-wrap: wrap;
   right: 36px;
-  top: 26px;
-  width: 498px;
-  height: 120px;
-  font: 400 24px/120px Kdam Thmor Pro, -apple-system, Roboto, Helvetica, sans-serif;
+  top: 20px;
+  font: 400 18px "Kdam Thmor Pro", sans-serif;
 }
 
 .navLink {
-  background: none;
-  border: none;
+  text-decoration: none;
   color: inherit;
-  font: inherit;
-  cursor: pointer;
-  padding: 0;
 }
 
-/* 模糊背景樣式 */
+/* 調整模糊背景樣式 */
 .blur-background {
   position: fixed;
   top: 0;
   left: 0;
-  width: 841vw;
-  height: 1283vh;
-  backdrop-filter: blur(10px); /* 模糊效果 */
-  background-color: rgba(255, 255, 255, 0.2); /* 半透明遮罩，讓模糊更明顯 */
-  z-index: 1; /* 背景層級*/
-}
-/* 登入.css*/
-.flexContainer {
-  display: flex;
-  gap: 10px; /* 元素間距 */
-  background-color: #f7cb9f;
-  padding: 20px;
-  width: 541px;
-  height: 86px;
-  flex-shrink: 2;
-  z-index: 1; /* 背景層級*/
-}
-
-.flexContainerWord {
-  color: #000;
-  font-family: Anybody;
-  font-size: 36px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px;
-  /* 111.111% */
-}
-
-.box {
-  position: absolute; /* 使用絕對定位 */
-  top: 50px; /* 距離父容器顶部 50px */
-  /* left: 100px; 距離父容器左側 100px */
-  width: 541px; /* 設定盒子的寬度為 541 像素 */
-  height: 642px; /* 設定盒子的高度為 642 像素 */
-  flex-shrink: 0; /* 禁止盒子在父容器中因空間不足被壓縮 */
-  background-color: #ffffff; /* 設定盒子的背景顏色為白色 */
-  color: black; /* 設定盒子內文字的顏色為黑色 */
-  font-size: 20px; 
-  display: flex; /* 設定盒子為彈性佈局 */
-  justify-content: center; /* 水平居中對齊子元素 */
-  align-items: center; /* 垂直居中對齊子元素 */
-  text-align: center; /* 設定文字的對齊方式為居中 */
-  z-index: 2; /* 背景層級*/
-}
-
-.boxGoogle {
-  width: 100px;
-  height: 100px;
-  flex-shrink: 0;
-  fill: #d9d9d9;
-  color: #ea0909;
-  font-size: 64px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 120px;
-}
-
-.boxWord {
-  left: 110;
-  top: 248;
-  color: #000;
-  font-family: Anybody;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px; /* 200% */
-}
-
-.boxWord2 {
-  left: 110;
-  top: 330;
-  color: #000;
-  font-family: Anybody;
-  font-size: 20px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 40px; /* 200% */
-}
-
-
-
-@media (max-width: 991px) {
-  .countdownSection {
-    max-width: 100%;
-    white-space: initial;
-  }
-  
-  .deadlineText {
-    padding: 0 20px;
-  }
-  
-  .countdown {
-    font-size: 40px;
-  }
-  
-  .timerBox {
-    font-size: 40px;
-  }
-  
-  .title {
-    font-size: 40px;
-  }
-  
-  .heroImage {
-    max-width: 100%;
-  }
-  
-  .sloganContainer {
-    max-width: 100%;
-    font-size: 40px;
-  }
-  
-  .slogan {
-    max-width: 100%;
-    font-size: 40px;
-  }
-  
-  .actionButtons {
-    white-space: initial;
-  }
-  
-  .registerButton,
-  .modifyButton {
-    padding: 0 20px;
-  }
-  
-  .navigation {
-    max-width: 100%;
-    white-space: initial;
-  }
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
 }
