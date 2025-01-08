@@ -2,4 +2,5 @@
 /Backend/build
 /Backend/node_modules
 /Backend/.env
+/FrontEnd/node_modules
 Backend/logs

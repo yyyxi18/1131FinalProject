@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // 引入 Link 用於導航
-import '../style/Activity.css';  // 引入 CSS 文件
+import '../style/Activity.module.css';  // 引入 CSS 文件
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 import { useNavigate } from 'react-router-dom';

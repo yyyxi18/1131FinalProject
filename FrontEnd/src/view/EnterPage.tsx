@@ -7,12 +7,12 @@ const EnterPage: React.FC = () => {
   const navigate = useNavigate(); // 用於導航到下一頁
 
   const handleGoClick = () => {
-    navigate('/Mainpage'); // 替換為目標頁面的路徑
+    navigate('/main'); // 替換為目標頁面的路徑
   };
 
   return (
     <div>
-      <div className="flexContainer"></div> {/* 正確的 className */}
+      <div className="flexContainer "></div> {/* 正確的 className */}
       <button className="go-word" onClick={handleGoClick}> {/* 正確的 className */}
         Go
       </button>

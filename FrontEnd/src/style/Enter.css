@@ -1,20 +1,25 @@
 .flexContainer {
-    display: flex;
-    width: 1280px;
-    height: 832px;
-    padding: 10px;
-    align-items: flex-start;
-    gap: 10px;
-    background: url('../assets/Frame.png') no-repeat center center / cover lightgray;
-
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: url('../assets/Frame.png') no-repeat center center / cover;
+  width: 100vw; /* 100% 視窗寬度 */
+  height: 100vh; /* 100% 視窗高度 */
+  margin: 0; /* 確保沒有多餘的邊距 */
+  padding: 0; /* 確保沒有多餘的內邊距 */
+  
   }
   
 
-.go-word {
-        width: 72px;
-        height: 96px;
-        position: absolute;
-        right: 122px;
-        bottom: 59px;
-    }
-      
+  .go-word {
+    width: 72px;
+    height: 96px;
+    position: absolute;
+    right: 122px;
+    bottom: 0;
+    outline: none; /* 移除按鈕的聚焦邊框 */
+  border: none; /* 移除邊框 */
+  font-weight: bolder; /* 設定字體加粗 */ 
+  color: aliceblue;
+    cursor: pointer; /* 可選，讓按鈕更有互動性 */
+}

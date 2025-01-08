@@ -1,0 +1,271 @@
+/* 修改後的 CSS 文件
+
+.heroImage {
+  width: 100%;
+  height: 423px;
+  position: absolute;
+  top: 131px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: url('../assets/Main.jpg') lightgray center / cover no-repeat;
+  z-index: 0;
+}
+
+.heroImageFilter {
+  width: 100%;
+  height: 841px;
+  flex-shrink: 0;
+  background: rgba(33, 33, 33, 0.3);
+  backdrop-filter: blur(15px);
+  position: absolute;
+  z-index: -1;
+}
+
+.container {
+  background-color: rgb(251, 245, 245);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.countdownSection {
+  border-radius: 10px;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  min-width: 240px;
+  flex-direction: column;
+  white-space: nowrap;
+  left: 45px;
+  bottom: 50px;
+  width: 466px;
+  height: auto;
+}
+
+.deadlineText {
+  border-radius: 10px;
+  background-color: rgba(217, 217, 217, 0.76);
+  width: 100%;
+  color: rgba(0, 0, 0, 0.96);
+  padding: 15px 20px;
+  font: 400 20px/1.5 "Anybody", sans-serif;
+  text-align: center;
+}
+
+.countdown {
+  display: flex;
+  margin-top: 15px;
+  align-items: center;
+  gap: 15px;
+  color: #fff;
+  text-align: center;
+  justify-content: center;
+  font: 600 50px/1 "PingFang SC", -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.timerBox {
+  border-radius: 11px;
+  background-color: rgba(0, 0, 0, 0.96);
+  overflow: hidden;
+  width: 90px;
+  height: 90px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.separator {
+  width: 8px;
+  height: 50px;
+  background-color: #fff;
+}
+
+.title {
+  color: #000;
+  position: absolute;
+  z-index: 1;
+  top: 20px;
+  text-align: center;
+  font: 400 48px/1 "Anton SC", -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+.sloganContainer {
+  width: 100%;
+  text-align: center;
+  font-family: "Kdam Thmor Pro";
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #FE8104;
+  -webkit-text-stroke-width: 2px;
+  -webkit-text-stroke-color: #000;
+}
+
+.actionButtons {
+  border-radius: 10px;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  right: 45px;
+  bottom: 50px;
+  width: 240px;
+}
+
+.registerButton,
+.modifyButton {
+  border-radius: 10px;
+  padding: 15px;
+  border: none;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+}
+
+.registerButton {
+  background-color: #FE8104;
+}
+
+.modifyButton {
+  background-color: rgba(254, 129, 4, 0.6);
+}
+
+.navigation {
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  gap: 20px;
+  color: #000;
+  right: 36px;
+  top: 20px;
+  font: 400 18px "Kdam Thmor Pro", sans-serif;
+}
+
+.navLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* 調整模糊背景樣式 */
+/* .blur-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.2);
+  z-index: -1;
+} */
+
+
+.heroImage2{
+  width: 100vw; /* 滿螢幕寬度 */
+  height: 423px; /* 滿螢幕高度 */
+  margin: 0;
+  display: flex;
+  place-items: center;
+  background: url('../assets/Main.jpg') lightgray 50% / cover no-repeat;
+}
+
+
+.container {
+  width: 100%;  
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: #FBF5F5;
+}
+
+.top {
+  display: flex;
+  margin-bottom: 20px;
+  justify-content: space-between;
+  padding: 3%;
+  align-items: flex-end;
+}
+
+.top .right .navigation {
+  display: flex;
+  gap: 1rem;
+  font-size: 1.5rem;
+  font-weight: bolder;
+}
+
+.top .right a {
+  text-decoration: none;
+  color: #212121;
+}
+
+.mid {
+  height: 423px;
+}
+
+.bottom {
+  padding: 40px;
+  display: flex;
+  justify-content: space-between;
+  gap: 384px;
+  align-items: center;
+}
+
+.deadlineText {
+  background-color: #D9D9D9C2;
+  border-radius: .3rem;
+  padding: 1% 3%;
+  font-size: 1.25rem;
+  font-weight: bolder;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.countdownSection {
+  display: flex;
+  flex-direction: column;
+  padding: 1%;
+  flex: 1;
+}
+
+.actionButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 37px;
+  flex: 1;
+}
+
+.actionButtons button {
+  outline: none;
+  border: none;
+  color: #fcfcfc;
+  font-size: 1.25rem;
+  padding: 1.5% 3%;
+  cursor: pointer;
+  border-radius: .3rem;
+}
+
+.registerButton {
+  background-color: #FE8104;
+}
+
+.modifyButton {
+  background-color: #FE810499;
+}
+
+.sloganContainer {
+  
+  width: 100%;
+  text-align: center;
+  font-family: "Kdam Thmor Pro";
+  font-size: 48px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: transparent; /* 將字體內容設為透明 */
+  -webkit-text-stroke-width: 2px; /* 設定描邊寬度 */
+  -webkit-text-stroke-color: #FE8104; /* 描邊顏色 */
+  padding-top: 20px; /* 向下移動文字 */
+}
