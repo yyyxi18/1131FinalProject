@@ -5,7 +5,7 @@ import { peopleModel } from '../orm/schemas/peopleSchemas'; // 修正路徑
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID!,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    callbackURL: '/google/callback',
+    callbackURL: 'http://127.0.0.1:2004/google',  // 確保這裡的 URL 與 Google Cloud Console 中的一致
 }, async (accessToken, refreshToken, profile, done) => {
     try {
         let user = await peopleModel.findOne({ googleId: profile.id }); // 使用模型查詢

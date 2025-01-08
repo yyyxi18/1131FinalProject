@@ -8,18 +8,22 @@ auth.get('/google', passport.authenticate('google', {
 }));
 
 // Google OAuth 回呼點
-auth.get('/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/' }), // 如果失敗，重定向到首頁
+auth.get('/google', 
+  passport.authenticate('google', { failureRedirect: '/' }), 
   (req, res) => {
-    // 成功驗證後，可以進行重定向或返回用戶資訊
-    res.redirect('/profile'); // 重定向到你的個人資料頁面
+    // 驗證成功後，將用戶資訊發送到前端
+    res.json({
+      success: true,
+      user: req.user, // 這是由 Passport.js 提供的用戶資訊
+    });
   }
 );
+
 
 // 測試用的個人資料頁面
 auth.get('/profile', (req, res) => {
   if (!req.isAuthenticated()) {
-    return res.redirect('/auth/google'); // 未登入則重定向到 Google 登入
+    return res.redirect('http://localhost:2004/profile'); // 未登入則重定向到 Google 登入
   }
   // 渲染用戶資訊
   res.render('profile', { 

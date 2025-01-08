@@ -45,18 +45,19 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    //<GoogleOAuthProvider clientId="1072667935053-3q3h89f58iq9v2ss4uied1n6g7q3g68u.apps.googleusercontent.com">
+    <div>
       <Routes>
-        <Route path="/" element={<EnterPage />} /> {/* 初始頁面 */}
         <Route path="/activity" element={<ActivityPage />} />
         <Route path="/map" element={<MapPage />} />
         <Route path="/login" element={<LoginMainPage />} />
         <Route path="/onlineService" element={<OnlineService />} />
         <Route path="/edit" element={<Edit />} />
-        <Route path="/main" element={<Mainpage />} /> {/* 主頁面 */}
-        <Route path="/signup" element={<SignupPage />} />
+        <Route path="/" element={<Mainpage />} />
+        <Route path="/sigup" element={<SigupPage />} />
       </Routes>
-    </BrowserRouter>
+    </div>
+    //</GoogleOAuthProvider>
   );
 }
 

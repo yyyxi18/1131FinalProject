@@ -23,8 +23,8 @@ export const Mainpage: React.FC = () => {
         <title>怕輸還不快跑</title>
       </Helmet>
 
-      <h1 className={styles.title}>2025 TKU IM MARATHON</h1>
-
+      <h1 className={styles.title}>2025 TKU IM</h1>
+      <h1 className={styles.title}>MARATHON</h1>
       <div className={styles.heroImage}>
         <div className={styles.sloganContainer}>怕輸 ! 還不快跑</div>
       </div>
@@ -35,7 +35,7 @@ export const Mainpage: React.FC = () => {
           <div className={styles.countdownEnd}>報名已截止</div>
         ) : (
           //countdow
-          <Countdown hours={timeLeft.hours} minutes={timeLeft.minutes} seconds={timeLeft.seconds} /> 
+          <Countdown hours={timeLeft.hours} minutes={timeLeft.minutes} seconds={timeLeft.seconds} />
         )}
       </div>
 
