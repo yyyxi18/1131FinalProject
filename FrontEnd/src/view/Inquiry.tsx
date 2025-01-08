@@ -1,3 +1,5 @@
+//查詢
+
 import React from 'react';
 
 const Inquiry: React.FC = () => {
