@@ -4,18 +4,15 @@ import { asyncGet } from '../utils/fetch';
 import { api } from '../enum/api';
 import { People } from '../interface/People';
 import { resp } from '../interface/resp';
-import { LoginPage } from './LoginPage'; // 引入 LoginPage
 import ActivityPage from '../view/ActivityPage';
 import Mainpage from '../view/Mainpage'; // 主頁面
-import EnterPage from '../view/EnterPage';
-import LoginMainPage from '../view/LoginMainPages'; //登入
-import MapPage from '../view/MapPage'; //地圖
-import OnlineService from '../view/OnlineService'; //線上客服
-import Edit from '../view/Edit';
-import  SignupPage  from '../view/SignupPage';//報名
-import { GoogleOAuthProvider } from '@react-oauth/google';
-import { Routes, Route } from 'react-router-dom';
-import { Helmet } from 'react-helmet';
+import EnterPage from '../view/EnterPage'; // 一開始頁面
+import LoginMainPage from '../view/LoginMainPages'; // 登入
+import MapPage from '../view/MapPage'; // 地圖
+import OnlineService from '../view/OnlineService'; // 線上客服
+import Edit from '../view/Edit';//修改
+import SignupPage from '../view/SignupPage'; // 報名
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 function App() {
   const [students, setStudents] = useState<Array<People>>([]);
@@ -47,21 +44,19 @@ function App() {
     }
   };
 
-  //轉化頁面
   return (
-    //<GoogleOAuthProvider clientId="1072667935053-3q3h89f58iq9v2ss4uied1n6g7q3g68u.apps.googleusercontent.com">
-    <div>
+    <BrowserRouter>
       <Routes>
+        <Route path="/" element={<EnterPage />} /> {/* 初始頁面 */}
         <Route path="/activity" element={<ActivityPage />} />
         <Route path="/map" element={<MapPage />} />
         <Route path="/login" element={<LoginMainPage />} />
         <Route path="/onlineService" element={<OnlineService />} />
         <Route path="/edit" element={<Edit />} />
-        <Route path="/" element={<Mainpage />} />
-        <Route path="/sigup" element={<SignupPage />} />
+        <Route path="/main" element={<Mainpage />} /> {/* 主頁面 */}
+        <Route path="/signup" element={<SignupPage />} />
       </Routes>
-    </div>
-    //</GoogleOAuthProvider>
+    </BrowserRouter>
   );
 }
 

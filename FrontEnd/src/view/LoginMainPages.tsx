@@ -1,6 +1,8 @@
+//登入
+
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import '../style/Mainpage.css'; // 改用非模組化的 CSS
+import styles from '../style/Mainpage.module.css'; // 模組化 CSS 引入
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 import { GoogleLogin } from '@react-oauth/google';
@@ -49,10 +51,10 @@ export const LoginMainPage: React.FC = () => {
       <Helmet>
         <title>怕輸還不快跑</title>
       </Helmet>
-      <div className=".blur-background"></div>
+      <div className={styles.blurBackground}></div>
 
-      <div className="countdownSection">
-        <div className="deadlineText">剩餘報名截止日期</div>
+      <div className={styles.countdownSection}>
+        <div className={styles.deadlineText}>剩餘報名截止日期</div>
         <Countdown
           hours={timeLeft.hours}
           minutes={timeLeft.minutes}
@@ -60,13 +62,13 @@ export const LoginMainPage: React.FC = () => {
         />
       </div>
 
-      <h1 className="title">2025 TKU IM </h1>
-      <h1 className="title">MARATHON </h1>
+      <h1 className={styles.title}>2025 TKU IM </h1>
+      <h1 className={styles.title}>MARATHON </h1>
 
-      <div className="heroImage">
-        <div className="sloganContainer">
-          <div className="slogan">怕輸 ! 還不快跑</div>
-          <div className="slogan2">怕輸 ! 還不快跑</div>
+      <div className={styles.heroImage}>
+        <div className={styles.sloganContainer}>
+          <div className={styles.slogan}>怕輸 ! 還不快跑</div>
+          <div className={styles.slogan2}>怕輸 ! 還不快跑</div>
         </div>
       </div>
 
@@ -75,26 +77,29 @@ export const LoginMainPage: React.FC = () => {
         onError={handleGoogleLoginFailure}
       />
 
-      <div className=".flexContainer">
-        <div className=".flexContainerWord">
+      <div className={styles.flexContainer}>
+        <div className={styles.flexContainerWord}>
           登入
         </div>
       </div>
-      <div className="box">
-        <div className="boxword">快速登入</div>
+      <div className={styles.box}>
+        <div className={styles.boxword}>快速登入</div>
 
-        <button className="quickLoginButton" onClick={handleAnotherButtonClick}>
+        <button
+          className={styles.quickLoginButton}
+          onClick={handleAnotherButtonClick}
+        >
           訪客
         </button>
 
         {/* 新增按鈕並實現跳轉 */}
-        <button className="boxGoogle" onClick={handleGoogleLoginSuccess}>
+        <button className={styles.boxGoogle} onClick={handleGoogleLoginSuccess}>
           G
         </button>
 
-        <div className="boxLine"></div>
-        <div className="boxLine2"></div>
-        <div className="boxLine3"></div>
+        <div className={styles.boxLine}></div>
+        <div className={styles.boxLine2}></div>
+        <div className={styles.boxLine3}></div>
       </div>
     </div>
   );

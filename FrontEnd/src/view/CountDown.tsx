@@ -1,3 +1,4 @@
+//倒數計時
 import React from 'react';
 import styles from '../style/MarathonBanner.module.css';
 import { TimerBox } from '../view/TimeBox';

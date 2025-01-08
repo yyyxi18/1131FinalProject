@@ -1,3 +1,5 @@
+//活動簡章
+
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom'; // 引入 Link 用於導航
 import '../style/Activity.css';  // 引入 CSS 文件
