@@ -31,4 +31,9 @@ auth.get('/profile', (req, res) => {
   });
 });
 
+auth.get('/google/callback', (req, res) => {
+  console.log(req.query); // 檢查是否有 code
+});
+
+
 export default auth;

@@ -7,6 +7,7 @@ passport.use(new GoogleStrategy({
     clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
     callbackURL: 'http://127.0.0.1:2004/google/callback',
 }, async (accessToken, refreshToken, profile, done) => {
+    console.log('Google OAuth 資訊:', profile);
     try {
         let user = await peopleModel.findOne({ googleId: profile.id }); // 使用模型查詢
         if (!user) {
