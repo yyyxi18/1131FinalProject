@@ -55,7 +55,7 @@ export const Edit: React.FC = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const response = await axios.get<ApiResponse>(`http://127.0.0.1:2004/api/v1/user/updateUserByID/${id}`);
+        const response = await axios.get<ApiResponse>(`http://127.0.0.1:2004/api/v1/user/getUserDataByID/${id}`);
         setUserData(response.data.data); // 取出內部的 data
       } catch (error) {
         console.error('Failed to fetch user data:', error);

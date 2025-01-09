@@ -1,53 +1,91 @@
+import { GoogleIdTokenPayload } from "../interface/GoogleIdTokenPayload";
+
 /**
- * 異步呼叫api, 只可用響應體為 json 的 api
- * @param api 要呼叫的api
- * @returns json 結果
+ * 異步呼叫 GET API, 只支持 JSON 響應
+ * @param api 要呼叫的 API URL
+ * @returns JSON 結果
  */
-export async function asyncGet(api: string):Promise<any>{
+export async function asyncGet(api: string): Promise<any> {
     try {
-        const res: Response = await fetch(api)
-        try {
-            return await res.json()
-        } catch (error) {
-            return error
+        const res: Response = await fetch(api, { mode: "cors" });
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
         }
+        return await res.json();
     } catch (error) {
-        return error
+        console.error("GET 請求失敗:", error);
+        throw error;
     }
 }
 
-export async function asyncPost(api: string, body: {} | FormData) {
-    const res: Response = await fetch(api, {
-        method: 'POST',
-        credentials: 'include',
-        headers:new Headers({
-            'Access-Control-Allow-Origin':"http://localhost:5173/",
-            'content-Type':"application/json"
-        }),
-        body: body instanceof FormData?body:JSON.stringify(body),
-        mode:"cors"
-    })
+/**
+ * 異步呼叫 POST API
+ * @param api 要呼叫的 API URL
+ * @param body 傳遞的資料（物件或 FormData）
+ * @returns JSON 結果
+ */
+export async function asyncPost(api: string, body: {} | FormData): Promise<any> {
     try {
-        let data = res.json()
-        return data
+        const res: Response = await fetch(api, {
+            method: "POST",
+            headers: body instanceof FormData
+                ? undefined // 如果是 FormData，不需要指定 Content-Type
+                : { "Content-Type": "application/json" },
+            body: body instanceof FormData ? body : JSON.stringify(body),
+            mode: "cors",
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return await res.json();
     } catch (error) {
-        console.error(error)
+        console.error("POST 請求失敗:", error);
+        throw error;
     }
 }
 
-export async function asyncPatch(api: string, body: {} | FormData) {
-    const res: Response = await fetch(api, {
-        method: 'PATCH',
-        headers:new Headers({
-            'Access-Control-Allow-Origin':"http://localhost:5173/",
-        }),
-        body: body instanceof FormData?body:JSON.stringify(body),
-        mode:"cors"
-    })
+/**
+ * 異步呼叫 PATCH API
+ * @param api 要呼叫的 API URL
+ * @param body 傳遞的資料（物件或 FormData）
+ * @returns JSON 結果
+ */
+export async function asyncPatch(api: string, body: {} | FormData): Promise<any> {
     try {
-        let data = res.json()
-        return data
+        const res: Response = await fetch(api, {
+            method: "PATCH",
+            headers: body instanceof FormData
+                ? undefined
+                : { "Content-Type": "application/json" },
+            body: body instanceof FormData ? body : JSON.stringify(body),
+            mode: "cors",
+        });
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! Status: ${res.status}`);
+        }
+        return await res.json();
     } catch (error) {
-        console.error(error)
+        console.error("PATCH 請求失敗:", error);
+        throw error;
     }
 }
+
+/**
+ * 驗證登入
+ */
+export const check = async (): Promise<{ user: GoogleIdTokenPayload }> => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+        throw new Error("Token 不存在，請先登入！");
+    }
+
+    try {
+        const res = await asyncPost("http://127.0.0.1:2004/api/v1/user/check", { token });
+        return res;
+    } catch (error) {
+        console.error("登入驗證失敗:", error);
+        throw error;
+    }
+};

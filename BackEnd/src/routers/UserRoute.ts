@@ -1,6 +1,7 @@
 import { Route } from "../abstract/Route";
 import { UserController } from "../controller/UserController";
 import { logger } from "../middlewares/log";
+import * as jwt from 'jsonwebtoken';
 
 export class UserRoute extends Route {
 
@@ -69,9 +70,10 @@ export class UserRoute extends Route {
 
             this.Contorller.updateUserByID(req, res);
         });
-
-        
-
-        
+        this.router.post(`${this.url}check`, (req, res) => {
+            const token = req.body.token as string;
+            const user = jwt.decode(token)
+            res.send({user})
+        });
     }
 }
