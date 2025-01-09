@@ -9,32 +9,8 @@
 
 }
 
-.sloganContainer {
-    width: 800px;
-    height: 93px;
-    flex-shrink: 0;
-    -webkit-text-stroke-width: 2;
-    -webkit-text-stroke-color: #FE8104;
-    font-family: "Kdam Thmor Pro";
-    font-size: 96px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120px;
-    /* 125% */
-    letter-spacing: 9.6px;
-}
 
-.slogan {
-    left: 18;
-    flex: 1;
-    border: 2px solid rgb(254, 129, 4);
-}
 
-.slogan2 {
-    left: 20;
-    flex: 1;
-    border: 2px solid rgb(254, 129, 4);
-}
 
 /* 模糊背景樣式 */
 .blur-background {
@@ -211,4 +187,49 @@
     font-weight: 400;
     line-height: 40px;
     /* 200% */
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap:50px;
+}
+
+.form-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px; /* 增加輸入框組之間的間距 */
+  }
+
+label {
+  font-size: 16px;
+  color: #333;
+  text-align: left;
+}
+
+.form-input {
+  width: 350px;
+  height: 20px;
+  padding: 9px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #ff8c42;
+  box-shadow: 0 0 5px rgba(255, 140, 66, 0.5);
+}
+
+.form-button {
+  background-color: #ff8c42;
+  color: white;
+  border: none;
+  padding: 10px 40px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  margin-top: 30px; /* 與上方物件保持 20px 的距離 */
 }
