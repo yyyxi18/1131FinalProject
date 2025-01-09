@@ -44,6 +44,7 @@ export const Mainpage: React.FC = () => {
       <div className="mid">
         <div className="heroImage2">
           <div className="sloganContainer">怕輸 ! 還不快跑</div>
+          
         </div>
       </div>
 
