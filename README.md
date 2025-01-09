@@ -162,6 +162,106 @@
   ```
 
 
+### 參賽者的4支API
+`BackEnd/src/Service/UserService.ts`
+
+#### 1. 獲取參賽者自己的資料(透過_id查詢)
+
+**請求方式**: `GET`
+
+**端點**: `/api/v1/user/getPersonByID`
+
+**回應範例**:
+```json
+{
+  "body": [
+    {
+    "_id": "676a6904ec679e721fb5d15e",
+    "no": "5",
+    "name": "王淑芬",
+    "phone": "0923017890",
+    "gender": "女",
+    "email": "user5@test.com"
+    }
+  ]
+}
+```
+
+#### 2. 報名(新增)
+**請求方式**: `POST`
+
+**端點**： `/api/v1/user/addPerson`
+**使用格式**:
+```json
+{
+  "name": "張安琪",
+  "phone": "0962079792",
+  "gender": "女",
+  "email": "chiii@gmail.com"
+}
+```
+**回應範例**:
+```json
+{
+    "message": "Person added successfully",
+    "person": {
+        "no": "23",
+        "name": "張安琪",
+        "phone": "0962079792",
+        "gender": "女",
+        "email": "chiii@gmail.com",
+        "_id": "677ef13444980bcc73830852",
+        "__v": 0
+    }
+}
+```
+
+#### 3. 取消報名(刪除)
+**請求方式**： `DELETE`
+
+**端點**： `/api/v1/user/cancelRunByID`
+
+**回應範例**:
+- 成功刪除
+  ```json
+  {
+    "message": "Person canceled successfully"
+}
+```
+
+```
+#### 4. 修改
+**請求方式**： `PUT`
+
+**端點**： `/api/v1/user/updateUserByID`
+
+**使用格式**:
+把要修改的資料內容寫上
+```json
+{
+  "name": "姚育祺",
+  "phone": "0976318478",
+  "gender": "女",
+  "email": "yyyxi@gmail.com"
+}
+```
+
+**回應範例**:
+  ```json
+  {
+    "message": "Person updated successfully",
+    "person": {
+        "_id": "677ef1cb44980bcc73830856",
+        "no": "23",
+        "name": "姚育祺",
+        "phone": "0976318478",
+        "gender": "女",
+        "email": "yyyxi@gmail.com",
+        "__v": 0
+    }
+}
+  ```
+
 ---
 
 ## 架構圖/流程圖
