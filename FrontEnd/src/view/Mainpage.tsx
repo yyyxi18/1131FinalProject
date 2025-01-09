@@ -62,7 +62,7 @@ export const Mainpage: React.FC = () => {
         <div className="actionButtons">
           <button
             className="registerButton"
-            onClick={() => navigate('/login')}
+            onClick={() => navigate('/signup')}
           >
             報名
           </button>
