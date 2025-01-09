@@ -1,18 +1,32 @@
 //編輯
-//還沒連資料庫
 
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom'; // 新增 useParams
 import '../style/Signup.css'; // 改用非模組化的 CSS
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
 
+interface UserData {
+  name: string;
+  phone: string;
+  gender: string;
+  email: string;
+}
 
 export const Edit: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
   const targetDate = new Date('2025-07-24T00:00:00'); // 設定倒數目標日期
   const navigate = useNavigate();
+  const { id } = useParams<{ id: string }>(); // 取得使用者 ID
+  const [userData, setUserData] = useState<UserData>({
+    name: '',
+    phone: '',
+    gender: '',
+    email: '',
+  });
 
+  // 倒數計時功能
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -32,14 +46,46 @@ export const Edit: React.FC = () => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
- 
+  // 查詢使用者資料
+  interface ApiResponse {
+    status: string;
+    data: UserData;
+  }
+  
+  useEffect(() => {
+    const fetchUserData = async () => {
+      try {
+        const response = await axios.get<ApiResponse>(`http://127.0.0.1:2004/api/v1/user/updateUserByID/${id}`);
+        setUserData(response.data.data); // 取出內部的 data
+      } catch (error) {
+        console.error('Failed to fetch user data:', error);
+      }
+    };
+  
+    if (id) {
+      fetchUserData();
+    }
+  }, [id]);
+  
 
-  // 跳轉到其他頁面
-  const handleAnotherButtonClick = () => {
-    navigate('/Main'); // 跳轉到指定頁
+  // 提交更新資料
+  const handleUpdate = async () => {
+    try {
+      await axios.put(`http://127.0.0.1:2004/api/v1/user/updateUserByID/${id}`, userData);
+      alert('使用者資料已成功更新');
+      navigate('/Main');
+    } catch (error) {
+      console.error('Failed to update user data:', error);
+      alert('更新失敗，請稍後再試');
+    }
   };
 
-  
+  // 更新使用者輸入資料
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setUserData({ ...userData, [name]: value });
+  };
+
   return (
     <div>
       <Helmet>
@@ -65,30 +111,50 @@ export const Edit: React.FC = () => {
         </div>
       </div>
 
-
       <div className="flexContainer">
-        <div className=".flexContainerWord">
-            報名
-        </div>
+        <div className="flexContainerWord">報名</div>
       </div>
       <div className="box">
-       <div className=".boxWord">
-        姓名：
-       </div>
-       <div className=".boxWord2">
-        電話：
-       </div>
-       <div className=".boxWord3">
-        性別：
-       </div>
-       <div className=".boxWord4">
-        email：
+        <div className="boxWord">
+          姓名：
+          <input
+            type="text"
+            name="name"
+            value={userData.name}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="boxWord2">
+          電話：
+          <input
+            type="text"
+            name="phone"
+            value={userData.phone}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="boxWord3">
+          性別：
+          <input
+            type="text"
+            name="gender"
+            value={userData.gender}
+            onChange={handleInputChange}
+          />
+        </div>
+        <div className="boxWord4">
+          Email：
+          <input
+            type="email"
+            name="email"
+            value={userData.email}
+            onChange={handleInputChange}
+          />
         </div>
 
-        <button className=".buttonsign " onClick={handleAnotherButtonClick}>
+        <button className="buttonsign" onClick={handleUpdate}>
           確定
         </button>
-
 
         <div className="boxLine"></div>
         <div className="boxLine2"></div>
@@ -98,4 +164,4 @@ export const Edit: React.FC = () => {
   );
 };
 
-export default Edit ;
+export default Edit;

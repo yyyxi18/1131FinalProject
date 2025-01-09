@@ -1,12 +1,25 @@
 //報名
-//還沒連資料庫
-
+//已連後端
+import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/Signup.css'; // 改用非模組化的 CSS
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 
+const handleSignup = async (name: string, phone: string, gender: string, email: string) => {
+  try {
+    const response = await axios.post('http://127.0.0.1:2004/api/v1/user/addPerson', {
+      name,
+      phone,
+      gender,
+      email,
+    });
+    console.log('Signup successful:', response.data);
+  } catch (error) {
+    console.error('Error during signup:', error);
+  }
+};
 
 export const SignupPage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
@@ -32,14 +45,14 @@ export const SignupPage: React.FC = () => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
- 
+
 
   // 跳轉到其他頁面
   const handleAnotherButtonClick = () => {
     navigate('/Main'); // 跳轉到指定頁
   };
 
-  
+
   return (
     <div>
       <Helmet>
@@ -68,21 +81,21 @@ export const SignupPage: React.FC = () => {
 
       <div className="flexContainer">
         <div className=".flexContainerWord">
-            報名
+          報名
         </div>
       </div>
       <div className="box">
-       <div className=".boxWord">
-        姓名：
-       </div>
-       <div className=".boxWord2">
-        電話：
-       </div>
-       <div className=".boxWord3">
-        性別：
-       </div>
-       <div className=".boxWord4">
-        email：
+        <div className=".boxWord">
+          姓名：
+        </div>
+        <div className=".boxWord2">
+          電話：
+        </div>
+        <div className=".boxWord3">
+          性別：
+        </div>
+        <div className=".boxWord4">
+          email：
         </div>
 
         <button className=".buttonsign " onClick={handleAnotherButtonClick}>
@@ -98,4 +111,4 @@ export const SignupPage: React.FC = () => {
   );
 };
 
-export default SignupPage ;
+export default SignupPage;
