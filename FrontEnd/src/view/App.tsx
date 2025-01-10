@@ -54,7 +54,7 @@ function App() {
         <Route path="/onlineService" element={<OnlineService />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/" element={<Mainpage />} />
-        <Route path="/sigup" element={<SigupPage />} />
+        <Route path="/sigup" element={<SignupPage />} />
       </Routes>
     </div>
     //</GoogleOAuthProvider>

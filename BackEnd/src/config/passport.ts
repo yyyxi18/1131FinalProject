@@ -5,8 +5,9 @@ import { peopleModel } from '../orm/schemas/peopleSchemas'; // 修正路徑
 passport.use(new GoogleStrategy({
     clientID: process.env.GOOGLE_CLIENT_ID!,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
-    callbackURL: 'http://127.0.0.1:2004/google',  // 確保這裡的 URL 與 Google Cloud Console 中的一致
+    callbackURL: 'http://127.0.0.1:2004/google/callback',
 }, async (accessToken, refreshToken, profile, done) => {
+    console.log('Google OAuth 資訊:', profile);
     try {
         let user = await peopleModel.findOne({ googleId: profile.id }); // 使用模型查詢
         if (!user) {
@@ -36,5 +37,7 @@ passport.deserializeUser(async (id, done) => {
         done(error, false); // 修正為 false
     }
 });
+
+
 
 export default passport;

@@ -60,9 +60,13 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
             <button
               className={styles.googleButton}
               aria-label="Login with Google"
+              onClick={() => {
+                window.location.href = 'http://localhost:2004/google'; // 替換為後端的 Google OAuth 路徑
+              }}
             >
               G
             </button>
+
             <Divider className={styles.divider} />
           </div>
         </form>

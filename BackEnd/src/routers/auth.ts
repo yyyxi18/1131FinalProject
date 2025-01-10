@@ -3,12 +3,12 @@ import passport from 'passport';
 var auth = express.Router();
 
 // Google OAuth 起始點
-auth.get('/google', passport.authenticate('google', {
+auth.get('/google/callback', passport.authenticate('google', {
     scope: ['email', 'profile'] // 要求的 Google OAuth 資訊
 }));
 
 // Google OAuth 回呼點
-auth.get('/google', 
+auth.get('/google/callback', 
   passport.authenticate('google', { failureRedirect: '/' }), 
   (req, res) => {
     // 驗證成功後，將用戶資訊發送到前端
@@ -30,5 +30,10 @@ auth.get('/profile', (req, res) => {
     user: req.user 
   });
 });
+
+auth.get('/google/callback', (req, res) => {
+  console.log(req.query); // 檢查是否有 code
+});
+
 
 export default auth;

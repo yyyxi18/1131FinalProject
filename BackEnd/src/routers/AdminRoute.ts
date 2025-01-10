@@ -55,6 +55,7 @@ export class AdminRoute extends Route {
             this.Contorller.deletePersonByID(req, res);
         });
 
+        
         /**
          * 新增參賽者
          * request body:

@@ -16,9 +16,35 @@ export const LoginMainPage: React.FC = () => {
   const handleGoogleLoginSuccess = async (response: any) => {
     console.log('Google Login Success:', response);
 
+    const handleGoogleLoginSuccess = async (response: any) => {
+      console.log('Google Login Success:', response);
+      /**
+       * 保存jwt
+       */
+      localStorage.setItem("token",response.credential)
+      try {
+        // 假設 response.credential 包含 Google 返回的 JWT Token
+        const res = await axios.post('http://localhost:2004/api/v1/user/check', {
+          /**
+           * response.credential => jwt
+           * 持久化
+           * localstorge
+           */
+          token: response.credential,
+        });
+    
+        console.log('API 回應:', res.data);
+    
+        // 登入成功後跳轉至主頁面
+        navigate('/Mainpage');
+      } catch (error) {
+        console.error('Google 登入 API 發送失敗:', error);
+      }
+    };
+
     try {
       // 假設 response.credential 包含 Google 返回的 JWT Token
-      const res = await axios.post('http://127.0.0.1:2004/google', {
+      const res = await axios.post('http://127.0.0.1:2004/google/callback', {
         token: response.credential,
       });
 
