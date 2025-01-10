@@ -11,9 +11,8 @@ const EnterPage: React.FC = () => {
   };
 
   return (
-    <div>
-      <div className="flexContainer "></div> {/* 正確的 className */}
-      <button className="go-word" onClick={handleGoClick}> {/* 正確的 className */}
+    <div className="enterPageContainer">
+      <button className="go-word" onClick={handleGoClick}>
         Go
       </button>
     </div>

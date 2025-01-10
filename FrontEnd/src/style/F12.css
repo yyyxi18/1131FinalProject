@@ -1,0 +1,70 @@
+.heroImagF {
+    width: 100vw;
+    /* 滿螢幕寬度 */
+    height: 194px;
+    /* 滿螢幕高度 */
+    margin: 0;
+    display: flex;
+    place-items: center;
+    background: url('../assets/Rectangle.jpg') lightgray 50% / cover no-repeat;
+}
+
+.sloganContainerF {
+
+    width: 100%;
+    text-align: center;
+    font-family: "Kdam Thmor Pro";
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: transparent;
+    /* 將字體內容設為透明 */
+    -webkit-text-stroke-width: 2px;
+    /* 設定描邊寬度 */
+    -webkit-text-stroke-color: #FE8104;
+    /* 描邊顏色 */
+    position: relative;
+    /* 開啟定位 */
+    padding-top: 120px;
+    /* 向下移動文字 */
+    left: -370px;
+}
+
+
+.inputContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputField {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.participantContainer {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.participantInfo {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    width: 100%;
+    max-width: 300px;
+    text-align: left;
+}
+
+.participantNumber, .participantName, .participantPhone, .participantGender, .participantEmail {
+    font-size: 16px;
+    margin-bottom: 10px;
+}

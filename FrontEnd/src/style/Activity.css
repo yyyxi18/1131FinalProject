@@ -1,0 +1,120 @@
+.heroImageactivity {
+    width: 100vw;
+    /* 滿螢幕寬度 */
+    height: 194px;
+    /* 滿螢幕高度 */
+    margin: 0;
+    display: flex;
+    place-items: center;
+    background: url('../assets/Rectangle.jpg') lightgray 50% / cover no-repeat;
+}
+
+.sloganContaineractivity {
+
+    width: 100%;
+    text-align: center;
+    font-family: "Kdam Thmor Pro";
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: transparent;
+    /* 將字體內容設為透明 */
+    -webkit-text-stroke-width: 2px;
+    /* 設定描邊寬度 */
+    -webkit-text-stroke-color: #FE8104;
+    /* 描邊顏色 */
+    position: relative;
+    /* 開啟定位 */
+    padding-top: 120px;
+    /* 向下移動文字 */
+    left: -370px;
+}
+
+.countdownSectionactivity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* 水平居中 */
+    justify-content: center;
+    /* 垂直居中 */
+    padding: 1%;
+    flex: 1;
+    position: relative;
+    /* 開啟相對定位，便於調整位置 */
+    margin-top: 120px;
+    /* 與上方物件的距離，可根據需求調整 */
+    width: 100%;
+    height: 100vh;
+    /* 讓區塊充滿整個視窗高度 */
+    position: absolute;
+    /* 絕對定位 */
+    top: 50%;
+    /* 垂直置中 */
+    left: 50%;
+    /* 水平置中 */
+    transform: translate(-50%, -50%);
+    /* 使用 transform 精確居中 */
+}
+
+.boxT {
+    position: relative;
+    width: 100%;
+    height: 400px; /* 可以根據需要調整 */
+    display: flex;
+    flex-direction: column; /* 垂直方向彈性佈局 */
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* 增加彈性 */
+    margin-top: 390px;
+    margin-bottom: 20px; /* 調整與底下物件的距離 */
+}
+
+ .textactivity {
+        position: relative;
+        font-size: 36px; 
+        font-weight: bold; 
+        text-align: center;
+        color: #333; 
+        text-decoration: underline;
+  text-decoration-thickness: 3px; 
+  text-decoration-color: #FE8104; 
+  margin: 80px;
+ }
+
+ .textactivity2 {
+    position: relative;
+    font-size: 24px; 
+    font-weight: bold; 
+    text-align: center; 
+    color: #333; 
+   
+    margin: 20px;
+}
+.underlineHighlight {
+    text-decoration: underline;
+    color: #FE8104;
+  }
+
+  .textactivity3 {
+    position: relative;
+    font-size: 48px; 
+    font-weight: bold; 
+    text-align: center; 
+    color: transparent; /* 文字顏色設置為透明 */
+    -webkit-text-stroke: 2px #FE8104; /* 設置文字外框顏色和寬度 */
+    margin: 66px;
+    margin: 50px;
+ 
+}
+
+.activitybutton {
+    background-color: #ff8c42;
+    color: white;
+    border: none;
+    padding: 10px 90px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* 與上方物件保持 20px 的距離 */
+  }

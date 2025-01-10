@@ -6,17 +6,23 @@ import { Countdown } from '../view/CountDown'; // 引入 Countdown 組件
 import { Helmet } from 'react-helmet';
 
 const navigationItems = [
-  { text: '活動簡章', path: '/activity-details' },
-  { text: '活動路線', path: '/route-map' },
-  { text: '線上客服', path: '/online-service' },
+  { text: '活動簡章', path: '/activity' },
+  { text: '活動路線', path: '/map' },
+  { text: '線上客服', path: '/onlineService' },
   { text: '登入', path: '/login' },
 ];
+
 
 export const Mainpage: React.FC = () => {
   const targetDate = new Date('2025-07-24T00:00:00');
   const timeLeft = UseCountdown(targetDate);  // 使用自定義的 UseCountdown hook
   const navigate = useNavigate();
-
+  const handleLigonButtonClick = () => {
+    navigate('/sigon'); // 跳轉到指定頁
+  };
+  const handleInquiryButtonClick = () => {
+    navigate('/inquiry'); // 跳轉到指定頁
+  };
   return (
     <div className="container">
       <Helmet>
@@ -43,7 +49,7 @@ export const Mainpage: React.FC = () => {
 
       <div className="mid">
         <div className="heroImage2">
-          <div className="sloganContainer">怕輸 ! 還不快跑</div>
+          <div className="sloganContainer"></div>
           
         </div>
       </div>
@@ -60,21 +66,16 @@ export const Mainpage: React.FC = () => {
         </div>
 
         <div className="actionButtons">
-          <button
-            className="registerButton"
-            onClick={() => navigate('/signup')}
-          >
-            報名
-          </button>
-          <button
-            className="modifyButton"
-            onClick={() => navigate('/edit')}
-          >
-            修改與查詢
-          </button>
-        </div>
-      </div>
-
+      
+            <button className="registerButton" onClick={handleLigonButtonClick}>
+              報名
+            </button>
+           
+            <button className="modifyButton" onClick={handleInquiryButtonClick}>
+              查詢與修改
+            </button>
+     </div>
+     </div>
     </div>
   );
 };

@@ -1,0 +1,110 @@
+.heroImageinquiry {
+    width: 100vw;
+    height: 194px;
+    margin: 0;
+    display: flex;
+    place-items: center;
+    background: url('../assets/Rectangle.jpg') lightgray 50% / cover no-repeat;
+}
+
+.sloganContainerinquiry {
+    width: 100%;
+    text-align: center;
+    font-family: "Kdam Thmor Pro";
+    font-size: 48px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: transparent;
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: #FE8104;
+    position: relative;
+    padding-top: 120px;
+    left: -370px;
+}
+
+.countdownSectioninquiry {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1%;
+    flex: 1;
+    position: relative;
+    margin-top: 120px;
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.boxTinquiry {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex: 1;
+    margin-top: -350px;
+    margin-bottom: 20px;
+}
+.textinquiry {
+    position: relative;
+    font-size: 36px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-decoration-color: #FE8104;
+    margin: 80px;
+    margin-top: 20px;
+}
+
+.inquiryForm {
+    display: flex;
+    flex-direction: row; /* 水平排列 */
+    align-items: center; /* 垂直居中 */
+    justify-content: center; /* 水平居中 */
+    gap: 100px; /* 控制輸入框和按鈕之間的間距 */
+    
+}
+
+.inquiryInput {
+    background-color: #e0e0e0; /* 背景顏色 */
+    color: #323131; /* 文字顏色 */
+    border: 1px solid #dad9d9; /* 邊框顏色 */
+    width: 300px;
+    padding: 10px;
+    border: 1px solid #b6b1b1;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.inquiryButton {
+    background-color: #FE8104;
+    color: white;
+    border: none;
+    padding: 10px 50px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.inquiryButton:hover {
+    background-color: #e76e00;
+}
+
+.textinquiry2{
+    position: relative;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    color: #c4c3c3;
+    margin: 80px;
+    margin-top: 20px;
+}

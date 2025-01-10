@@ -233,3 +233,33 @@ label {
   transition: background-color 0.3s;
   margin-top: 30px; /* 與上方物件保持 20px 的距離 */
 }
+
+.Loginbutton {
+    background-color: #e5e0dd;
+    color: rgb(88, 85, 85);
+    border: none;
+    padding: 10px 45px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* 與上方物件保持 20px 的距離 */
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: space-between; /* 在按鈕之間添加空間 */
+    gap: 20px; /* 按鈕之間的間距 */
+}
+
+ .textactivity {
+        position: relative;
+        font-size: 36px; 
+        font-weight: bold; 
+        text-align: center;
+        color: #333; 
+        text-decoration: underline;
+  text-decoration-thickness: 3px; 
+  text-decoration-color: #FE8104; 
+  margin: 80px;
+ }

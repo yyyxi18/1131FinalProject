@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/CountDowm.css'; // 改用非模組化的 CSS
+import '../style/Signup.css';
 import { Helmet } from 'react-helmet';
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
@@ -55,6 +56,10 @@ export const LoginMainPage: React.FC = () => {
   const handleAnotherButtonClick = () => {
     navigate('/Main'); // 跳轉到指定頁
   };
+  const handleuserButtonClick = () => {
+    navigate('/user'); // 跳轉到指定頁
+  };
+
 
   function handleGoogleLoginFailure(): void {
     throw new Error('Function not implemented.');
@@ -112,26 +117,27 @@ export const LoginMainPage: React.FC = () => {
 
 
 
-          <button className="guestText" 
-          onClick={handleAnotherButtonClick}>
-            訪客
-          </button>
+          <div className="buttonContainer">
+            <button className="Loginbutton" onClick={handleAnotherButtonClick}>
+              訪客登入
+            </button>
 
+            <button className="Loginbutton" onClick={handleuserButtonClick}>
+              開發人員登入
+            </button>
+            </div>
         </div>
-
-
-
-
-
       </div>
-
-
-
-
-
-
     </div>
-  );
+
+
+
+
+
+
+
+
+        );
 };
 
-export default LoginMainPage;
+        export default LoginMainPage;
