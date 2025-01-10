@@ -25,7 +25,7 @@ export const LoginMainPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const randomAbsences = Math.floor(Math.random() * 10); // 隨機生成缺席次數
+      //const randomAbsences = Math.floor(Math.random() * 10); // 隨機生成缺席次數
       const newPeople = {
         _id: "",  // 暫時設為空字符串或 undefined，等待後端返回
         name: formData.name,

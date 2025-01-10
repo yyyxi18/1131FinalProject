@@ -21,7 +21,7 @@ export const F12usePage: React.FC = () => {
 
   const handleSearch = async () => {
     try {
-      const response = await axios.get('http://你的API端點', {
+      const response = await axios.get('http://127.0.0.1:2004/api/v1/admin/getPersonByID', {
         params: { name: inputValue }
       });
       const data = response.data as {
