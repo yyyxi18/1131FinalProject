@@ -6,6 +6,7 @@ import '../style/Signup.css'; // 改用非模組化的 CSS
 import { Countdown } from '../view/CountDown';
 import { Helmet } from 'react-helmet';
 import axios from 'axios';
+import { check } from '../utils/fetch';
 
 interface UserData {
   name: string;
@@ -26,6 +27,28 @@ export const Edit: React.FC = () => {
     email: '',
   });
 
+  useEffect(()=>{
+
+    /**
+     * 先檢查有無登入
+     */
+    check().then(info=>{
+      if (info.user == null) {
+        /**
+         * 沒有登入
+         */
+        alert("先登入")
+        navigate('/login'); // 替換為目標頁面的路徑
+      }else{
+        /**
+         * 有登入
+         */
+        navigate('/main'); // 替換為目標頁面的路徑
+      }
+    })
+
+  },[])
+  
   // 倒數計時功能
   useEffect(() => {
     const interval = setInterval(() => {
