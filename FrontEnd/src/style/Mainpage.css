@@ -459,3 +459,21 @@
   border-radius: 5px;
   cursor: pointer;
 }
+
+.buttonContainer {
+  display: flex;
+  justify-content: space-between; /* 在按鈕之間添加空間 */
+  gap: 20px; /* 按鈕之間的間距 */
+}
+
+.textactivity {
+      position: relative;
+      font-size: 36px; 
+      font-weight: bold; 
+      text-align: center;
+      color: #333; 
+      text-decoration: underline;
+text-decoration-thickness: 3px; 
+text-decoration-color: #FE8104; 
+margin: 80px;
+}
