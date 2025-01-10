@@ -32,39 +32,66 @@
 
 
 .inputContainer {
-    margin-top: 20px;
+    margin-top: -200px;
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
 .inputField {
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: 1px solid #e2cdcd;
     border-radius: 4px;
     width: 100%;
     max-width: 300px;
-}
-
-.participantContainer {
-    margin-top: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+   
 }
 
 .participantInfo {
     padding: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    background-color: #f9f9f9;
+    border-radius: 8px;
+    background-color: #fff5f5;
     width: 100%;
-    max-width: 300px;
+    max-width: 100%;
     text-align: left;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 卡片 Hover 效果 */
+.participantInfo:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .participantNumber, .participantName, .participantPhone, .participantGender, .participantEmail {
-    font-size: 16px;
-    margin-bottom: 10px;
+    font-size: 18px;
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.F12button {
+    display: flex;
+    gap: 10px; /* 增大按鈕之間的間距 */
+    margin-top: 10px;
+}
+
+.F12text {
+    font-size: 16px; 
+    font-weight: bold; 
+    text-align: center;
+    color: #fff; 
+    background-color: #f48b30; 
+    border: none; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+}
+
+.F12text:hover {
+    background-color: #c27b25; 
 }

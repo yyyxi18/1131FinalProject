@@ -89,7 +89,7 @@ export const LoginMainPage: React.FC = () => {
         <div className="form">
           <div className="form-group">
             <div className='textonline'>
-              小編鐵腿送醫休息三個禮拜 :)
+              小編鐵腿送醫休息三個禮拜🤪~
             </div>
             
           </div>

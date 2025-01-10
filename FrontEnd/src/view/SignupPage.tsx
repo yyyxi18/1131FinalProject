@@ -65,6 +65,10 @@ export const LoginMainPage: React.FC = () => {
     }
   };
 
+  const handleAnotherButtonClick = () => {
+    navigate('/Main'); // 跳轉到指定頁
+  };
+
   return (
     <div className="container">
       <Helmet>
@@ -72,10 +76,11 @@ export const LoginMainPage: React.FC = () => {
       </Helmet>
       <h1 className="title">2025 TKU IM</h1>
       <h1 className="title">MARATHON</h1>
+      <div className="heroImage"></div>
 
       <div className="box">
         <div className="boxText">報名</div>
-        <div className="form">
+        <div className="form" >
           <div className="form-group">
             <label>
               姓名：
@@ -132,9 +137,9 @@ export const LoginMainPage: React.FC = () => {
             </label>
           </div>
 
-          <button type="submit" className="form-button" onClick={handleSubmit}>
-            報名
-          </button>
+          <button type="submit" className="form-button" onClick={handleAnotherButtonClick}>
+  報名
+</button>
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import '../style/Mainpage.css';
 import { UseCountdown } from '../interface/UseCountdown';  // 引入 useCountdown
-import { Countdown } from '../view/CountDown'; // 引入 Countdown 組件
+import { Countdown } from './CountDown'; // 引入 Countdown 組件
 import { Helmet } from 'react-helmet';
 
 interface User {
@@ -15,7 +15,7 @@ const navigationItems = [
   { text: '活動簡章', path: '/activity' },
   { text: '活動路線', path: '/map' },
   { text: '線上客服', path: '/onlineService' },
-  { text: '登入', path: '/login' },
+  
 ];
 
 
@@ -52,7 +52,7 @@ export const Mainpage: React.FC = () => {
     }
   }, []);
   const handleLigonButtonClick = () => {
-    navigate('/sigon'); // 跳轉到指定頁
+    navigate('/signup'); // 跳轉到指定頁
   };
   const handleInquiryButtonClick = () => {
     navigate('/inquiry'); // 跳轉到指定頁

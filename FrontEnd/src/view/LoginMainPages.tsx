@@ -1,9 +1,6 @@
-//登入
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/CountDowm.css'; // 改用非模組化的 CSS
-import '../style/Signup.css';
 import { Helmet } from 'react-helmet';
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
@@ -34,7 +31,7 @@ export const LoginMainPage: React.FC = () => {
       console.log('API 回應:', res.data);
 
       // 登入成功後跳轉至主頁面
-      navigate('/');
+      navigate('/Mainpage');
     } catch (error) {
       console.error('Google 登入 API 發送失敗:', error);
     }
@@ -65,10 +62,10 @@ export const LoginMainPage: React.FC = () => {
   const handleAnotherButtonClick = () => {
     navigate('/Main'); // 跳轉到指定頁
   };
+
   const handleuserButtonClick = () => {
     navigate('/user'); // 跳轉到指定頁
   };
-
 
   function handleGoogleLoginFailure(): void {
     throw new Error('Function not implemented.');
@@ -126,7 +123,7 @@ export const LoginMainPage: React.FC = () => {
 
 
 
-          <div className="buttonContainer">
+<div className="buttonContainer">
             <button className="Loginbutton" onClick={handleAnotherButtonClick}>
               訪客登入
             </button>
@@ -138,15 +135,7 @@ export const LoginMainPage: React.FC = () => {
         </div>
       </div>
     </div>
-
-
-
-
-
-
-
-
-        );
+  );
 };
 
-        export default LoginMainPage;
+export default LoginMainPage;
