@@ -27,7 +27,7 @@ export const InquiryPage: React.FC = () => {
     const phone = (event.target as any).elements.phone.value;
     //查
     try {
-      const response = await axios.post('http://127.0.0.1:2004/api/v1/user/cancelRunByID', { email, phone });
+      const response = await axios.post('http://127.0.0.1:2004/api/v1/admin/getPersonByID', { email, phone });
       setResult(response.data);
     } catch (error) {
       console.error('查詢失敗:', error);
