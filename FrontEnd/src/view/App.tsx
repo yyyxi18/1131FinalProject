@@ -13,6 +13,7 @@ import OnlineService from '../view/OnlineService'; // 線上客服
 import Edit from '../view/Edit';//修改
 import SignupPage from '../view/SignupPage'; // 報名
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 function App() {
   const [students, setStudents] = useState<Array<People>>([]);
@@ -54,10 +55,10 @@ function App() {
         <Route path="/onlineService" element={<OnlineService />} />
         <Route path="/edit" element={<Edit />} />
         <Route path="/" element={<Mainpage />} />
-        <Route path="/sigup" element={<SignupPage />} />
+        <Route path="/signup" element={<SignupPage />} />
       </Routes>
     </div>
-    //</GoogleOAuthProvider>
+   //</GoogleOAuthProvider>
   );
 }
 

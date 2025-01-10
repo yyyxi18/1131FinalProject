@@ -52,7 +52,7 @@ export const Mainpage: React.FC = () => {
     }
   }, []);
   const handleLigonButtonClick = () => {
-    navigate('/sigon'); // 跳轉到指定頁
+    navigate('/signup'); // 跳轉到指定頁
   };
   const handleInquiryButtonClick = () => {
     navigate('/inquiry'); // 跳轉到指定頁

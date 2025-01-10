@@ -33,7 +33,7 @@ export const LoginMainPage: React.FC = () => {
         gender: formData.gender,
         email: formData.email,
       };
-      
+
       // 發送 POST 請求到後端 API
       const response = await fetch('http://127.0.0.1:2004/api/v1/user/addPerson', {
         method: 'POST',
@@ -132,9 +132,13 @@ export const LoginMainPage: React.FC = () => {
             </label>
           </div>
 
-          <button type="submit" className="form-button" onClick={handleSubmit}>
-            報名
-          </button>
+          <form onSubmit={handleSubmit} className="form">
+            {/* 其餘表單輸入 */}
+            <button type="submit" className="form-button">
+              報名
+            </button>
+          </form>
+
         </div>
       </div>
     </div>

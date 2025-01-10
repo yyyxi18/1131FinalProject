@@ -5,6 +5,7 @@ export enum api{
 
     addPerson = "http://127.0.0.1:2004/api/v1/user/addPerson",
     getUserDataByID = "http://127.0.0.1:2004/api/v1/user/getUserDataByID",
+    getPersonByEmailAndPhone = "http://127.0.0.1:2004/api/v1/user/getPersonByEmailAndPhone" ,
     cancelRunByID = "http://127.0.0.1:2004/api/v1/user/cancelRunByID",
     updateUserByID = "http://127.0.0.1:2004/api/v1/user/updateUserByID",
 

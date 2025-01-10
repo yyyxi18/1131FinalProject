@@ -1,3 +1,4 @@
+
 import { Service } from "../abstract/Service";
 import { PeopleRun } from "../interfaces/PeopleRun";
 import { logger } from "../middlewares/log";
@@ -99,6 +100,38 @@ export class UserService extends Service {
         }
 
         return resp;
+    }
+
+     /**
+     * 根據 Email 和電話查詢參賽者
+     * @param email 用戶 Email
+     * @param phone 用戶電話
+     * @returns resp<any>
+     */
+     public async getPersonByEmailAndPhone(email: string, phone: string): Promise<resp<any>> {
+        const response: resp<any> = {
+            code: 200,
+            message: "",
+            body: null
+        };
+
+        try {
+            const result = await peopleModel.findOne({ email, phone });
+
+            if (!result) {
+                response.code = 404;
+                response.message = "No user found with the provided email and phone";
+            } else {
+                response.body = result;
+                response.message = "Success";
+            }
+        } catch (error) {
+            response.code = 500;
+            response.message = `Server error: ${error}`;
+            logger.error("Error fetching person by email and phone:", error);
+        }
+
+        return response;
     }
 
     /**

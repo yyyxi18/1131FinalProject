@@ -65,6 +65,10 @@ export const LoginMainPage: React.FC = () => {
     navigate('/Main'); // 跳轉到指定頁
   };
 
+  const handleuserButtonClick = () => {
+    navigate('/user'); // 跳轉到指定頁
+  };
+
   function handleGoogleLoginFailure(): void {
     throw new Error('Function not implemented.');
   }
@@ -118,27 +122,18 @@ export const LoginMainPage: React.FC = () => {
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}
           />
+          
+          <div className="buttonContainer">
+            <button className="Loginbutton" onClick={handleAnotherButtonClick}>
+              訪客登入
+            </button>
 
-
-
-          <button className="guestText" 
-          onClick={handleAnotherButtonClick}>
-            訪客
-          </button>
-
+            <button className="Loginbutton" onClick={handleuserButtonClick}>
+              開發人員登入
+            </button>
+            </div>
         </div>
-
-
-
-
-
       </div>
-
-
-
-
-
-
     </div>
   );
 };

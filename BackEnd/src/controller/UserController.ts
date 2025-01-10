@@ -1,13 +1,18 @@
 import { Contorller } from "../abstract/Contorller";
-import { Request, Response } from "express";
+//import { Request, Response } from "express";
 import { UserService } from "../Service/UserService";
 import { resp } from "../utils/resp";
 import { DBResp } from "../interfaces/DBResp";
 import { PeopleRun } from "../interfaces/PeopleRun";
 import { peopleModel } from "../orm/schemas/peopleSchemas";
+import { Request, Response } from "express-serve-static-core";
+import { ParsedQs } from "qs";
 require('dotenv').config();
 
 export class UserController extends Contorller {
+    getUserDataByEmailAndPhone(req: Request<{}, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>, number>) {
+        throw new Error("Method not implemented.");
+    }
     protected service: UserService;
 
     constructor() {
@@ -111,4 +116,25 @@ export class UserController extends Contorller {
             res.status(500).json({ message: `Error updating person: ${error}` });
         }
     }
+
+    /**
+     * 獲取所有參賽者資料
+     * @param req Express Request
+     * @param res Express Response
+     */
+    public async getAllPeople(req: Request, res: Response): Promise<void> {
+        try {
+            const result = await this.service.getAllPeople();
+
+            if (result) {
+                res.status(200).json(result);
+            } else {
+                res.status(404).json({ message: "No participants found" });
+            }
+        } catch (error) {
+            res.status(500).json({ message: `Error retrieving participants: ${error}` });
+        }
+    }
 }
+
+

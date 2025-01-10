@@ -1,10 +1,7 @@
 import React, { useState } from 'react';
-import { data, Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../style/Mainpage.css';
 import '../style/Inquiry.css';
-
-//import { UseCountdown } from '../interface/UseCountdown';  // 引入 useCountdown
-// import { Countdown } from './CountDown'; // 引入 Countdown 組件
 import { Helmet } from 'react-helmet';
 
 const navigationItems = [
@@ -18,26 +15,53 @@ export const InquiryPage: React.FC = () => {
   const [result, setResult] = useState<any>(null);
   const navigate = useNavigate();
 
-
-
-
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const email = (event.target as any).elements.email.value;
-    const phone = (event.target as any).elements.phone.value;
-    //查
+
+    // 獲取輸入值並確保是 string
+    const email = (event.target as any).elements.email.value.toString().trim();
+    const phone = (event.target as any).elements.phone.value.toString().trim();
+
+    if (!email || !phone) {
+      alert('請輸入有效的 Email 和電話！');
+      return;
+    }
+    
     try {
-      const response = await axios.post('http://127.0.0.1:2004/api/v1/admin/getPersonByID', { email, phone });
-      setResult(response.data);
+      const response = await fetch('http://127.0.0.1:2004/api/v1/user/getUserDataByID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, phone }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setResult(data);
     } catch (error) {
       console.error('查詢失敗:', error);
     }
   };
-  //刪
+
   const handleCancelRegistration = async () => {
     const { id, name, phone, gender } = result || {};
     try {
-      await axios.post('http://127.0.0.1:2004/api/v1/admin/deleteUserByID', { id, name, phone, gender });
+      const response = await fetch('http://127.0.0.1:2004/api/v1/admin/deleteUserByID', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ id, name, phone, gender }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
       alert('報名已取消');
       setResult(null); // 清除結果
     } catch (error) {
@@ -50,7 +74,6 @@ export const InquiryPage: React.FC = () => {
     navigate('/edit', { state: { email, phone, name, result } });
   };
 
-  
   return (
     <div className="container">
       <Helmet>
@@ -80,36 +103,28 @@ export const InquiryPage: React.FC = () => {
         </div>
       </div>
 
-      {/*<div className="bottom">
-        <div className="countdownSectioninquiry">
-          <div className="deadlineText">剩餘報名截止日期</div>
-          {timeLeft.hours === 0 && timeLeft.minutes === 0 && timeLeft.seconds === 0 ? (
-            <div className="countdownEnd">報名已截止</div>
-          ) : (
-            <Countdown hours={timeLeft.hours} minutes={timeLeft.minutes} seconds={timeLeft.seconds} />
-          )}
-        </div> */}
-
       <div className="boxTinquiry">
-        <div className="textinquiry">
-          報名查詢
-        </div>
+        <div className="textinquiry">報名查詢</div>
 
         <form onSubmit={handleSubmit} className="inquiryForm">
-          <input type="text"
+          <input
+            type="text"
+            name="email"
             placeholder="Email"
-            className="inquiryInput" />
+            className="inquiryInput"
+          />
 
-          <input type="text"
+          <input
+            type="text"
+            name="phone"
             placeholder="電話"
-            className="inquiryInput" />
+            className="inquiryInput"
+          />
 
           <button type="submit" className="inquiryButton">查詢</button>
         </form>
 
-        <div className='textinquiry2'>
-          資料
-        </div>
+        <div className="textinquiry2">資料</div>
         {result && (
           <div className="textinquiry2">
             <pre>{JSON.stringify(result, null, 2)}</pre>
@@ -118,17 +133,9 @@ export const InquiryPage: React.FC = () => {
             <button className="cancelButton" onClick={handleCancelRegistration}>老子反悔不想跑了！</button>
           </div>
         )}
-
-
-
-
-
       </div>
     </div>
-
   );
 };
 
 export default InquiryPage;
-
-
