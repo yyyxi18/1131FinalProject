@@ -281,7 +281,9 @@
 ---
 ## Figma
 **設計理念**
-整體色調以橘色和灰色為主，打造一種運動家繪有的風格。主頁搭配起跑姿勢的圖片展現速度感，也說明我們的主題就是跑步。
+整體色調以橘色和灰色為主，打造一種運動家會有的風格。主頁搭配起跑姿勢的圖片展現速度感，也說明我們的主題就是跑步。
+
+**連結**
 https://www.figma.com/proto/UjmbbiNpyXbDkYG7ODxxfx/%E9%A0%81%E9%9D%A2%E8%A8%AD%E8%A8%88?node-id=1-2&p=f&t=81H9vYKhRgdgHELp-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1
 
 ## 操作影片
