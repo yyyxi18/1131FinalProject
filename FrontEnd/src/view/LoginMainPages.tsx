@@ -1,10 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/CountDowm.css'; // 改用非模組化的 CSS
-<<<<<<< HEAD
-=======
-import '../style/Mainpage.css';
->>>>>>> bf998a2ad2ff3c9a4a89de38efe0117d7735477d
 import { Helmet } from 'react-helmet';
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
@@ -124,15 +120,10 @@ export const LoginMainPage: React.FC = () => {
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}
           />
-<<<<<<< HEAD
-          
-          <div className="buttonContainer">
-=======
 
 
 
 <div className="buttonContainer">
->>>>>>> bf998a2ad2ff3c9a4a89de38efe0117d7735477d
             <button className="Loginbutton" onClick={handleAnotherButtonClick}>
               訪客登入
             </button>

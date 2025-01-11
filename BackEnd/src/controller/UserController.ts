@@ -1,18 +1,10 @@
 import { Contorller } from "../abstract/Contorller";
-//import { Request, Response } from "express";
 import { UserService } from "../Service/UserService";
-import { resp } from "../utils/resp";
-import { DBResp } from "../interfaces/DBResp";
-import { PeopleRun } from "../interfaces/PeopleRun";
 import { peopleModel } from "../orm/schemas/peopleSchemas";
 import { Request, Response } from "express-serve-static-core";
-import { ParsedQs } from "qs";
-require('dotenv').config();
+require("dotenv").config();
 
 export class UserController extends Contorller {
-    getUserDataByEmailAndPhone(req: Request<{}, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>, number>) {
-        throw new Error("Method not implemented.");
-    }
     protected service: UserService;
 
     constructor() {
@@ -110,7 +102,10 @@ export class UserController extends Contorller {
             if (!updatedPerson) {
                 res.status(404).json({ message: "Person not found" });
             } else {
-                res.status(200).json({ message: "Person updated successfully", person: updatedPerson });
+                res.status(200).json({
+                    message: "Person updated successfully",
+                    person: updatedPerson,
+                });
             }
         } catch (error) {
             res.status(500).json({ message: `Error updating person: ${error}` });
@@ -118,23 +113,28 @@ export class UserController extends Contorller {
     }
 
     /**
-     * 獲取所有參賽者資料
+     * 根據 Email 和電話查詢參賽者
      * @param req Express Request
      * @param res Express Response
      */
-    public async getAllPeople(req: Request, res: Response): Promise<void> {
-        try {
-            const result = await this.service.getAllPeople();
+    public async getUserDataByEmailAndPhone(req: Request, res: Response): Promise<void> {
+        const { email, phone } = req.query;
 
-            if (result) {
-                res.status(200).json(result);
+        if (!email || !phone) {
+            res.status(400).json({ message: "Email and phone are required" });
+            return;
+        }
+
+        try {
+            const result = await this.service.getPersonByEmailAndPhone(email as string, phone as string);
+
+            if (result.code === 200) {
+                res.status(200).json(result.body);
             } else {
-                res.status(404).json({ message: "No participants found" });
+                res.status(result.code).json({ message: result.message });
             }
         } catch (error) {
-            res.status(500).json({ message: `Error retrieving participants: ${error}` });
+            res.status(500).json({ message: `Error retrieving person: ${error}` });
         }
     }
 }
-
-

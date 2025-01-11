@@ -102,13 +102,13 @@ export class UserService extends Service {
         return resp;
     }
 
-     /**
-     * 根據 Email 和電話查詢參賽者
-     * @param email 用戶 Email
-     * @param phone 用戶電話
-     * @returns resp<any>
-     */
-     public async getPersonByEmailAndPhone(email: string, phone: string): Promise<resp<any>> {
+    /**
+* 根據 Email 和電話查詢參賽者
+* @param email 用戶 Email
+* @param phone 用戶電話
+* @returns resp<any>
+*/
+    public async getPersonByEmailAndPhone(email: string, phone: string): Promise<resp<any>> {
         const response: resp<any> = {
             code: 200,
             message: "",
@@ -116,16 +116,20 @@ export class UserService extends Service {
         };
 
         try {
+            // 查詢符合條件的參賽者
             const result = await peopleModel.findOne({ email, phone });
 
             if (!result) {
+                // 如果查無此人
                 response.code = 404;
                 response.message = "No user found with the provided email and phone";
             } else {
+                // 查詢成功，回傳資料
                 response.body = result;
                 response.message = "Success";
             }
         } catch (error) {
+            // 捕捉查詢過程中的錯誤
             response.code = 500;
             response.message = `Server error: ${error}`;
             logger.error("Error fetching person by email and phone:", error);
@@ -133,6 +137,7 @@ export class UserService extends Service {
 
         return response;
     }
+
 
     /**
      * 參賽者取消報名

@@ -24,23 +24,22 @@ export class UserRoute extends Route {
         this.router.post(`${this.url}addPerson`, (req, res) => {
             this.Contorller.addPerson(req, res);
         });
-        
+
 
         /**
          * 查詢一筆參賽者資料
          * request query: id (string)
          */
-        this.router.get(`${this.url}getUserDataByID`, (req, res) => {
-            // 將 id 從 req.query 中解析
-            const id = req.query.id as string;
-
-            // 確保 id 存在後再調用 Controller 方法
-            if (!id) {
-                return res.status(400).json({ error: "ID is required" });
+        this.router.get(`${this.url}getUserDataByEmailAndPhone`, (req, res) => {
+            const { email, phone } = req.query;
+        
+            if (!email || !phone) {
+                return res.status(400).json({ error: "Email and phone are required" });
             }
-
-            this.Contorller.getUserDataByID(req, res);
+        
+            this.Contorller.getUserDataByEmailAndPhone(req, res);
         });
+        
 
         /**
          * 刪除一筆參賽者資料
@@ -52,7 +51,7 @@ export class UserRoute extends Route {
 
             // 確保 id 存在後再調用 Controller 方法
             if (!id) {
-            return res.status(400).json({ error: "ID is required" });
+                return res.status(400).json({ error: "ID is required" });
             }
 
             this.Contorller.cancelRunByID(req, res);
@@ -65,7 +64,7 @@ export class UserRoute extends Route {
             const id = req.query.id as string;
             // 確保 id 和 data 存在後再調用 Controller 方法
             if (!id || !req.body) {
-            return res.status(400).json({ error: "ID and data are required" });
+                return res.status(400).json({ error: "ID and data are required" });
             }
 
             this.Contorller.updateUserByID(req, res);
@@ -73,7 +72,7 @@ export class UserRoute extends Route {
         this.router.post(`${this.url}check`, (req, res) => {
             const token = req.body.token as string;
             const user = jwt.decode(token)
-            res.send({user})
+            res.send({ user })
         });
     }
 }

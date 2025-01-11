@@ -22,18 +22,13 @@ export const InquiryPage: React.FC = () => {
     const email = (event.target as any).elements.email.value.toString().trim();
     const phone = (event.target as any).elements.phone.value.toString().trim();
 
-    if (!email || !phone) {
-      alert('請輸入有效的 Email 和電話！');
-      return;
-    }
-    
     try {
-      const response = await fetch('http://127.0.0.1:2004/api/v1/user/getUserDataByID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ email, phone }),
+      // 拼接查詢字符串
+      const query = `?email=${encodeURIComponent(email)}&phone=${encodeURIComponent(phone)}`;
+      const url = `http://127.0.0.1:2004/api/v1/user/getUserDataByEmailAndPhone${query}`;
+
+      const response = await fetch(url, {
+        method: 'GET', // 使用 GET 方法
       });
 
       if (!response.ok) {
@@ -48,26 +43,40 @@ export const InquiryPage: React.FC = () => {
   };
 
   const handleCancelRegistration = async () => {
-    const { id, name, phone, gender } = result || {};
+    const { id } = result || {};
+    if (!id) {
+      alert('找不到使用者資料，無法取消報名');
+      return;
+    }
+
+    // 確認操作
+    const confirmCancel = window.confirm('確定要取消報名嗎？此操作無法復原！');
+    if (!confirmCancel) return;
+
     try {
-      const response = await fetch('http://127.0.0.1:2004/api/v1/admin/deleteUserByID', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ id, name, phone, gender }),
-      });
+      const url = `http://127.0.0.1:2004/api/v1/user/cancelRunByID?id=${encodeURIComponent(id)}`;
+
+      const response = await fetch(url, { method: 'DELETE' });
 
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        const error = await response.json();
+        throw new Error(error.message || `HTTP error! Status: ${response.status}`);
       }
 
       alert('報名已取消');
-      setResult(null); // 清除結果
+      setResult(null); // 清空結果
+      navigate('/'); // 選擇跳轉到首頁或其他頁面
     } catch (error) {
-      console.error('取消報名失敗:', error);
+      if (error instanceof Error) {
+        console.error('取消報名失敗:', error.message);
+        alert(`取消報名失敗: ${error.message}`);
+      } else {
+        console.error('取消報名失敗:', error);
+        alert('取消報名失敗，請稍後再試');
+      }
     }
   };
+
 
   const handleEditRegistration = () => {
     const { email, phone, name } = result || {};
