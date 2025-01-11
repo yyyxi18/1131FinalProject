@@ -5,7 +5,7 @@ import { api } from '../enum/api';
 import { People } from '../interface/People';
 import { resp } from '../interface/resp';
 import ActivityPage from '../view/ActivityPage';
-import Mainpage from '../view/Mainpage'; // 主頁面
+import Mainpage from './MainPage'; // 主頁面
 import EnterPage from '../view/EnterPage'; // 一開始頁面
 import LoginMainPage from '../view/LoginMainPages'; // 登入
 import MapPage from '../view/MapPage'; // 地圖

@@ -13,9 +13,10 @@
 .go-word {
   width: 100px;
   height: 100px;
+  position: fixed;
   position: absolute;
-  right: 50px; /* 調整按鈕的水平位置 */
-  bottom: 15px; /* 調整按鈕的垂直位置 */
+  right: 135px; /* 調整按鈕的水平位置 */
+  bottom: 13px; /* 調整按鈕的垂直位置 */
   outline: none; /* 移除按鈕的聚焦邊框 */
   border: none; /* 移除邊框 */
   font-weight: bolder; /* 設定字體加粗 */ 

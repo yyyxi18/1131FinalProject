@@ -1,8 +1,10 @@
-//登入
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/CountDowm.css'; // 改用非模組化的 CSS
+<<<<<<< HEAD
+=======
+import '../style/Mainpage.css';
+>>>>>>> bf998a2ad2ff3c9a4a89de38efe0117d7735477d
 import { Helmet } from 'react-helmet';
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
@@ -33,7 +35,7 @@ export const LoginMainPage: React.FC = () => {
       console.log('API 回應:', res.data);
 
       // 登入成功後跳轉至主頁面
-      navigate('/');
+      navigate('/Mainpage');
     } catch (error) {
       console.error('Google 登入 API 發送失敗:', error);
     }
@@ -122,8 +124,15 @@ export const LoginMainPage: React.FC = () => {
             onSuccess={handleGoogleLoginSuccess}
             onError={handleGoogleLoginFailure}
           />
+<<<<<<< HEAD
           
           <div className="buttonContainer">
+=======
+
+
+
+<div className="buttonContainer">
+>>>>>>> bf998a2ad2ff3c9a4a89de38efe0117d7735477d
             <button className="Loginbutton" onClick={handleAnotherButtonClick}>
               訪客登入
             </button>
