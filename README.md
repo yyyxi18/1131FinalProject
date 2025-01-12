@@ -108,9 +108,9 @@
 
 ## API 規格說明
 
-### 管理員的3支API
+### 管理員的支API
 `BackEnd/src/Service/AdminService.ts`
-#### 1. 獲取所有參賽者資料(取得所有資料，並按照No.排序)
+#### 獲取所有參賽者資料(取得所有資料，並按照No.排序)
 
 **請求方式**: `GET`
 
@@ -134,54 +134,18 @@
 }
 ```
 
-#### 2. 透過id查詢一筆參賽者資料
-**請求方式**: `GET`
 
-**端點**： `/api/v1/admin/getPersonByID?id= (mongoDB裡的_id)`
-
-**回應範例**:
-```json
-{
-    "code": 200,
-    "message": "Find success",
-    "body": [
-        {
-              "_id": "676a6904ec679e721fb5d15e",
-              "no": "5",
-              "name": "王淑芬",
-              "phone": "0923017890",
-              "gender": "女",
-              "email": "user5@test.com"
-    }
-  ]
-}
-```
-
-#### 3. 刪除參賽者資料（透過 id刪除）
-**請求方式**： `DELETE`
-
-**端點**： `/api/v1/admin/deletePersonByID`
-
-**回應範例**:
-- 成功刪除
-  ```json
-  {
-       code: 200,
-       message: "",
-       body: null,
-  
-  };
   ```
 
 
 ### 參賽者的4支API
 `BackEnd/src/Service/UserService.ts`
 
-#### 1. 獲取參賽者自己的資料(透過_id查詢)
+#### 1. 獲取參賽者自己的資料(透過email和電話查詢)
 
 **請求方式**: `GET`
 
-**端點**: `/api/v1/user/getPersonByID`
+**端點**: `/api/v1/user/getPersonByEmailAndPhone`
 
 **回應範例**:
 ```json
@@ -274,11 +238,23 @@
 }
   ```
 
+### Oauth2.0
+`BackEnd/src/Service/UserService.ts`
+
+#### Google登入
+
+**請求方式**: `GET`
+
+**端點**: `/api/v1/user/check`
+
+```
+
 ---
 ## 架構圖
 ![image](架構圖.jpg)
-## 流程圖
 
+## 流程圖
+![image](流程圖.png)
 
 
 ---
@@ -290,5 +266,5 @@
 https://www.figma.com/proto/UjmbbiNpyXbDkYG7ODxxfx/%E9%A0%81%E9%9D%A2%E8%A8%AD%E8%A8%88?node-id=1-2&p=f&t=81H9vYKhRgdgHELp-1&scaling=scale-down&content-scaling=fixed&page-id=0%3A1
 
 ## 操作影片
-
+https://youtu.be/wnVXDRrMbxQ?si=KvSjbu7EoGf69QGc
 
