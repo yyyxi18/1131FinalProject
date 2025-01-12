@@ -32,12 +32,13 @@
 
 
 .inputContainer {
-    margin-top: -200px;
+    margin-top: 50px; /* 調整位置，根據需求可調 */
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    gap: 15px; /* 增加輸入框和按鈕之間的間距 */
 }
+
 
 .inputField {
     padding: 10px;
@@ -61,17 +62,7 @@
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* 卡片 Hover 效果 */
-.participantInfo:hover {
-    transform: scale(1.05);
-    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
-}
 
-.participantNumber, .participantName, .participantPhone, .participantGender, .participantEmail {
-    font-size: 18px;
-    margin-bottom: 12px;
-    line-height: 1.5;
-}
 
 .F12button {
     display: flex;
@@ -89,9 +80,55 @@
     padding: 10px 20px; 
     border-radius: 5px; 
     cursor: pointer; 
-    transition: background-color 0.3s ease; 
+    transition: background-color 0.3s ease, transform 0.2s ease; /* 添加動畫效果 */
 }
 
 .F12text:hover {
     background-color: #c27b25; 
+    transform: scale(1.05); /* 鼠標懸停時略微放大 */
 }
+
+.F12text:hover {
+    background-color: #c27b25; 
+    transform: scale(1.05); /* 鼠標懸停時略微放大 */
+}
+
+.F12text:focus {
+    outline: 2px solid #f48b30; /* 聚焦時的外框 */
+    outline-offset: 4px;} /* 外框與按鈕間距 */
+
+
+    .participantGrid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* 每行最多 4 個卡片，寬度自適應 */
+        gap: 20px; /* 卡片之間的間距 */
+        margin: 20px auto; /* 上下居中，左右置中 */
+        padding: 0 20px; /* 增加容器內側的間距 */
+        max-width: 1200px; /* 最大寬度，防止過度延展 */
+    }
+    
+    .participantCard {
+        padding: 20px;
+        border: 1px solid #f48b30;
+        border-radius: 10px;
+        background-color: #fff5f5;
+        text-align: center;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    
+    .participantCard:hover {
+        transform: scale(1.05);
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    }
+    
+    .participantNumber,
+    .participantName,
+    .participantPhone,
+    .participantGender,
+    .participantEmail {
+        font-size: 16px;
+        margin-bottom: 8px;
+        line-height: 1.4;
+    }
+    

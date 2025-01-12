@@ -7,12 +7,13 @@ import { Countdown } from '../view/CountDown'; // 引入 Countdown 組件
 import { Helmet } from 'react-helmet';
 
 const navigationItems = [
+  { text: '主頁', path: '/main' },
   { text: '活動簡章', path: '/activity' },
   { text: '活動路線', path: '/map' },
   { text: '線上客服', path: '/onlineService' },
   { text: '登入', path: '/login' },
-];
 
+];
 export const ActivityPage: React.FC = () => {
   const targetDate = new Date('2025-07-24T00:00:00');
   const timeLeft = UseCountdown(targetDate);  // 使用自定義的 UseCountdown hook
@@ -82,8 +83,8 @@ export const ActivityPage: React.FC = () => {
 </div>
           <button
             className="activitybutton"
-            onClick={() => navigate('/signup')}
-          >
+            onClick={() => navigate('/signup')} >
+
             報名
           </button>
 

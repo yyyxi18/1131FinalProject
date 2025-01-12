@@ -43,8 +43,8 @@ export const InquiryPage: React.FC = () => {
   };
 
   const handleCancelRegistration = async () => {
-    const { id } = result || {};
-    if (!id) {
+    const _id = result._id;
+    if ( !_id ) {
       alert('找不到使用者資料，無法取消報名');
       return;
     }
@@ -54,7 +54,7 @@ export const InquiryPage: React.FC = () => {
     if (!confirmCancel) return;
 
     try {
-      const url = `http://127.0.0.1:2004/api/v1/user/cancelRunByID?id=${encodeURIComponent(id)}`;
+      const url = `http://127.0.0.1:2004/api/v1/user/cancelRunByID?id=${_id}`;
 
       const response = await fetch(url, { method: 'DELETE' });
 
@@ -65,7 +65,7 @@ export const InquiryPage: React.FC = () => {
 
       alert('報名已取消');
       setResult(null); // 清空結果
-      navigate('/'); // 選擇跳轉到首頁或其他頁面
+      navigate('/main'); // 選擇跳轉到首頁或其他頁面
     } catch (error) {
       if (error instanceof Error) {
         console.error('取消報名失敗:', error.message);
@@ -132,8 +132,6 @@ export const InquiryPage: React.FC = () => {
 
           <button type="submit" className="inquiryButton">查詢</button>
         </form>
-
-        <div className="textinquiry2">資料</div>
         {result && (
           <div className="textinquiry2">
             <pre>{JSON.stringify(result, null, 2)}</pre>

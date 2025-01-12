@@ -9,17 +9,12 @@ export const Edit: React.FC = () => {
   const targetDate = new Date('2025-07-24T00:00:00'); // 設定倒數目標日期
   const navigate = useNavigate();
   const location = useLocation();
-  const { email, phone } = location.state || {}; // 從路由參數取得 email 和 phone
+  const { email, phone } = location.state || {};
 
-  const [formData, setFormData] = useState({
-    id: '',
-    name: '',
-    gender: '',
-    email: email || '', // 來自 location.state
-    phone: phone || '', // 來自 location.state
-  });
+  const [name, setName] = useState('');
+  const [gender, setGender] = useState('');
+  
 
-  // 倒數計時
   useEffect(() => {
     const interval = setInterval(() => {
       const now = new Date();
@@ -39,67 +34,42 @@ export const Edit: React.FC = () => {
     return () => clearInterval(interval);
   }, [targetDate]);
 
-  // 從後端獲取資料
   useEffect(() => {
     const fetchData = async () => {
-      if (!email || !phone) {
-        console.error('缺少 email 或 phone，無法獲取資料');
-        return;
-      }
-  
       try {
-        const response = await fetch(
-          `http://127.0.0.1:2004/api/v1/user/getUserDataByEmailAndPhone?email=${email}&phone=${phone}`
-        );
-  
+        const response = await fetch(`http://127.0.0.1:2004/api/v1/user/getUserDataByEmailAndPhone?email=${email}&phone=${phone}`);
         if (!response.ok) {
-          throw new Error(`獲取資料失敗，HTTP 狀態碼: ${response.status}`);
+          throw new Error('Network response was not ok');
         }
-  
-        const userData = await response.json();
-        console.log('獲取的使用者資料:', userData);
-  
-        if (userData.body && userData.body._id) {
-          // 確保 `formData` 被正確設置
-          const newFormData = {
-            id: userData.body._id,
-            name: userData.body.name || '',
-            gender: userData.body.gender || '',
-            email: userData.body.email || '',
-            phone: userData.body.phone || '',
-          };
-          console.log("新設置的使用者資料:", newFormData);
-          setFormData(newFormData);
-        } else {
-          console.error('未找到有效的使用者 ID');
-        }
+        const data = await response.json();
+        setName(data.name);
+        setGender(data.gender);
+        setId(data._id); // 保存 ID 到狀態
       } catch (error) {
         console.error('獲取資料失敗:', error);
       }
     };
-  
-    fetchData();
-  }, [email, phone]);
-  
 
-  // 提交更新請求
+    if (email && phone) {
+      fetchData();
+    }
+  }, [email, phone]);
+
+  const [id, setId] = useState<string | null>(null); // 新增狀態
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    console.log('提交前檢查的資料:', formData);
 
-    const { id, name, gender, email, phone } = formData;
-
-    if (!id || !name.trim() || !gender.trim() || !email.trim() || !phone.trim()) {
-      console.error('檢查的值有缺失:', { id, name, gender, email, phone });
+    // 確認所有必填字段非空
+    if (!name || !gender || !email || !phone) {
       alert('請確認所有欄位都有值');
       return;
     }
 
     try {
-      const payload = { id, name, gender, email, phone }; // 包括所有必要的數據
+      const payload = { name, phone, gender, email }; // 添加 ID
       console.log('發送的資料:', payload);
 
-      const response = await fetch('http://127.0.0.1:2004/api/v1/user/updateUserByID?_id=${id}', {
+      const response = await fetch(`http://127.0.0.1:2004/api/v1/user/updateUserByID?id=${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -108,32 +78,32 @@ export const Edit: React.FC = () => {
       });
 
       if (!response.ok) {
-        const errorDetail = await response.text();
+        const errorDetail = await response.text(); // 捕捉回傳的詳細錯誤
         console.error('錯誤細節:', errorDetail);
-        throw new Error(`更新資料失敗，HTTP 狀態碼: ${response.status}`);
+        throw new Error('Network response was not ok');
       }
 
       const data = await response.json();
       console.log('資料已更新:', data);
       alert('資料已更新');
-      navigate('/Main'); // 跳轉到指定頁面
+      navigate('/inquiry'); // 跳轉到指定頁
     } catch (error) {
       console.error('更新資料失敗:', error);
       alert('更新資料失敗，請檢查輸入內容');
     }
   };
 
+
   return (
     <div className="container">
       <Helmet>
         <title>怕輸還不快跑</title>
       </Helmet>
-      <h1 className="title">2025 TKU IM</h1>
-      <h1 className="title">MARATHON</h1>
+      <h1 className="title">2025 TKU IM </h1>
+      <h1 className="title">MARATHON </h1>
       <div className="heroImage"></div>
       <div className="box">
         <div className="boxText">編輯資料</div>
-        
         <div className="form">
           <div className="form-group">
             <label>
@@ -141,8 +111,8 @@ export const Edit: React.FC = () => {
               <input
                 type="text"
                 className="form-input"
-                value={formData.name}
-                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                value={name}
+                onChange={(e) => setName(e.target.value)}
               />
             </label>
           </div>
@@ -152,7 +122,7 @@ export const Edit: React.FC = () => {
               <input
                 type="text"
                 className="form-input"
-                value={formData.phone}
+                value={phone}
                 disabled
               />
             </label>
@@ -163,8 +133,8 @@ export const Edit: React.FC = () => {
               <input
                 type="text"
                 className="form-input"
-                value={formData.gender}
-                onChange={(e) => setFormData({ ...formData, gender: e.target.value })}
+                value={gender}
+                onChange={(e) => setGender(e.target.value)}
               />
             </label>
           </div>
@@ -174,7 +144,7 @@ export const Edit: React.FC = () => {
               <input
                 type="email"
                 className="form-input"
-                value={formData.email}
+                value={email}
                 disabled
               />
             </label>

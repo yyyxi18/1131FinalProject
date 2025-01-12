@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/CountDowm.css'; // 改用非模組化的 CSS
+import '../style/Login.css';
 import { Helmet } from 'react-helmet';
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
@@ -31,7 +32,7 @@ export const LoginMainPage: React.FC = () => {
       console.log('API 回應:', res.data);
 
       // 登入成功後跳轉至主頁面
-      navigate('/');
+      navigate('/main');
     } catch (error) {
       console.error('Google 登入 API 發送失敗:', error);
     }
