@@ -250,6 +250,13 @@
 ```
 
 ---
+
+## 前端亮點
+### 倒數計時動畫
+<img width="382" alt="截圖 2025-01-13 凌晨4 20 22" src="https://github.com/user-attachments/assets/d732019d-8cba-45cb-89fd-4a50909f937f" />
+
+
+
 ## 架構圖
 ![image](架構圖.jpg)
 
