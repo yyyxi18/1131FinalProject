@@ -43,8 +43,8 @@ export const InquiryPage: React.FC = () => {
   };
 
   const handleCancelRegistration = async () => {
-    const { id } = result || {};
-    if (!id) {
+    const _id = result._id;
+    if ( !_id ) {
       alert('找不到使用者資料，無法取消報名');
       return;
     }
@@ -54,7 +54,7 @@ export const InquiryPage: React.FC = () => {
     if (!confirmCancel) return;
 
     try {
-      const url = `http://127.0.0.1:2004/api/v1/user/cancelRunByID?id=${id}`;
+      const url = `http://127.0.0.1:2004/api/v1/user/cancelRunByID?id=${_id}`;
 
       const response = await fetch(url, { method: 'DELETE' });
 
