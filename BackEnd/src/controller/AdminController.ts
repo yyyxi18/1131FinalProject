@@ -5,12 +5,16 @@ import { resp } from "../utils/resp";
 import { DBResp } from "../interfaces/DBResp";
 import { PeopleRun } from "../interfaces/PeopleRun";
 import { peopleModel } from "../orm/schemas/peopleSchemas";
-import { Request, Response } from "express-serve-static-core";
+import { ParamsDictionary, Request, Response } from "express-serve-static-core";
 import { ParsedQs } from "qs";
+import { Request, Response } from "express";
 
 require('dotenv').config();
 
 export class UserController extends Contorller {
+    insertOne(req: Request<ParamsDictionary, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>>) {
+        throw new Error("Method not implemented.");
+    }
     addPerson(req: Request<{}, any, any, ParsedQs, Record<string, any>>, res: Response<any, Record<string, any>, number>) {
         throw new Error("Method not implemented.");
     }

@@ -1,4 +1,4 @@
-.heroImage {
+.heroImagesignup {
     width: 1280px;
     height: 423px;
     position: absolute;
@@ -193,6 +193,7 @@ form {
   display: flex;
   flex-direction: column;
   gap:50px;
+  margin-block: -30px;
 }
 
 .form-group {
@@ -230,7 +231,7 @@ label {
   border-radius: 4px;
   font-size: 16px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: background-color 1s;
   margin-top: 30px; /* 與上方物件保持 20px 的距離 */
 }
 
@@ -246,20 +247,10 @@ label {
     margin-top: 20px; /* 與上方物件保持 20px 的距離 */
 }
 
-.buttonContainer {
-    display: flex;
-    justify-content: space-between; /* 在按鈕之間添加空間 */
-    gap: 20px; /* 按鈕之間的間距 */
-}
-
- .textactivity {
-        position: relative;
-        font-size: 36px; 
-        font-weight: bold; 
-        text-align: center;
-        color: #333; 
-        text-decoration: underline;
-  text-decoration-thickness: 3px; 
-  text-decoration-color: #FE8104; 
-  margin: 80px;
- }
+.button-group {
+    display: flex; /* 水平排列按鈕 */
+    gap: 0px; /* 兩個按鈕之間的距離 */
+    justify-content: center; /* 讓按鈕居中對齊 */
+    margin-top: 3px; /* 與表單其他部分保持距離 */
+  }
+  

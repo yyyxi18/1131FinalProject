@@ -82,8 +82,8 @@ export const ActivityPage: React.FC = () => {
 </div>
           <button
             className="activitybutton"
-            onClick={() => navigate('/signup')}
-          >
+            onClick={() => navigate('/signup')} >
+              
             報名
           </button>
 

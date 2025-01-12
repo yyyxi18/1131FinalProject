@@ -65,7 +65,7 @@ export const InquiryPage: React.FC = () => {
 
       alert('報名已取消');
       setResult(null); // 清空結果
-      navigate('/'); // 選擇跳轉到首頁或其他頁面
+      navigate('/main'); // 選擇跳轉到首頁或其他頁面
     } catch (error) {
       if (error instanceof Error) {
         console.error('取消報名失敗:', error.message);

@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import EnterPage from "../view/EnterPage";
-import Mainpage from "../view/MainPage";
+import Mainpage from "../view/Mainpage";
 import ActivityPage from "../view/ActivityPage";
 import MapPage from "../view/MapPage";
 import LoginMainPage from "../view/LoginMainPages";
