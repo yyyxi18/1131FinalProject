@@ -7,7 +7,7 @@ import LoginMainPage from "../view/LoginMainPages";
 import OnlineService from "../view/OnlineService";
 import Edit from "../view/Edit";
 import SignupPage from "../view/SignupPage";
-import F12userPage from '../view/F12usePage'
+import F12usePage from '../view/F12usePage'
 import Inquiry from '../view/InquiryPage';
 
 
@@ -20,7 +20,7 @@ const router = createBrowserRouter([
   { path: "/onlineService", element: <OnlineService /> },
   { path: "/edit", element: <Edit /> },
   { path: "/signup", element: <SignupPage /> },
- { path: "/user", element: <F12userPage /> },
+  { path: "/user", element: <F12usePage /> },
   { path: "/inquiry", element: <Inquiry /> },
 ]);
 

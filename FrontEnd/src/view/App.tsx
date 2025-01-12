@@ -5,7 +5,7 @@ import { api } from '../enum/api';
 import { People } from '../interface/People';
 import { resp } from '../interface/resp';
 import ActivityPage from '../view/ActivityPage';
-import Mainpage from './MainPage'; // 主頁面
+import Mainpage from '../view/Mainpage'; // 主頁面
 import EnterPage from '../view/EnterPage'; // 一開始頁面
 import LoginMainPage from '../view/LoginMainPages'; // 登入
 import MapPage from '../view/MapPage'; // 地圖
@@ -14,6 +14,8 @@ import Edit from '../view/Edit';//修改
 import SignupPage from '../view/SignupPage'; // 報名
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { GoogleOAuthProvider } from '@react-oauth/google';
+import InquiryPage from '../view/InquiryPage';
+import F12usePage from '../view/F12usePage';
 
 function App() {
   const [students, setStudents] = useState<Array<People>>([]);
@@ -56,6 +58,8 @@ function App() {
         <Route path="/edit" element={<Edit />} />
         <Route path="/" element={<Mainpage />} />
         <Route path="/signup" element={<SignupPage />} />
+        <Route path="/user" element={<F12usePage />} />
+        <Route path="/inquiry" element={<InquiryPage />} /> 
       </Routes>
     </div>
    //</GoogleOAuthProvider>

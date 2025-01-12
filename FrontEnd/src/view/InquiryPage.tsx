@@ -54,7 +54,7 @@ export const InquiryPage: React.FC = () => {
     if (!confirmCancel) return;
 
     try {
-      const url = `http://127.0.0.1:2004/api/v1/user/cancelRunByID?id=${encodeURIComponent(id)}`;
+      const url = `http://127.0.0.1:2004/api/v1/user/cancelRunByID?id=${id}`;
 
       const response = await fetch(url, { method: 'DELETE' });
 
