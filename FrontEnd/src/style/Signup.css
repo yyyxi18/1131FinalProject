@@ -235,17 +235,7 @@ label {
   margin-top: 30px; /* 與上方物件保持 20px 的距離 */
 }
 
-.Loginbutton {
-    background-color: #e5e0dd;
-    color: rgb(88, 85, 85);
-    border: none;
-    padding: 10px 45px;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-    margin-top: 20px; /* 與上方物件保持 20px 的距離 */
-}
+
 
 .button-group {
     display: flex; /* 水平排列按鈕 */

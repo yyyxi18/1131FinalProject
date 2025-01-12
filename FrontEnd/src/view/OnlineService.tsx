@@ -2,12 +2,17 @@
 
 
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../style/CountDowm.css'; // 改用非模組化的 CSS
 import '../style/Signup.css'
 import { Helmet } from 'react-helmet';
 
+const navigationItems = [
+  { text: '', path: '/main' },
 
+  { text: '這就是人生回頭吧🈹', path: '/main' },
+
+];
 
 export const LoginMainPage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
@@ -63,9 +68,24 @@ export const LoginMainPage: React.FC = () => {
           seconds={timeLeft.seconds}
         />
       </div> */}
+ 
+             <div className="top">
+                 <div className="left">
+                     <h1 className="title">2025 TKU IM</h1>
+                     <h1 className="title">MARATHON</h1>
+                 </div>
+ 
+                 <div className="right">
+                     <nav className="navigation">
+                         {navigationItems.map(({ text, path }) => (
+                             <Link key={path} to={path} className="navLink">
+                                 {text}
+                             </Link>
+                         ))}
+                     </nav>
+                 </div>
+             </div>
 
-      <h1 className="title">2025 TKU IM </h1>
-      <h1 className="title">MARATHON </h1>
       {/*
       <div className="heroImage">
         <div className="sloganContainer">
@@ -74,24 +94,23 @@ export const LoginMainPage: React.FC = () => {
         </div>
       </div>
 */}
-      <div className="heroImage"></div>
+      <div className="heroImagesignup"></div>
 
       <div className="box">
 
 
         <div className="boxText">
-          
+
           線上客服
-          <div></div>
-          <button className='buttononline' onClick={handleAnotherButtonClick}>返回</button>
         </div>
+
 
         <div className="form">
           <div className="form-group">
             <div className='textonline'>
               小編鐵腿送醫休息三個禮拜🤪~
             </div>
-            
+
           </div>
 
 

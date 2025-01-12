@@ -1,0 +1,58 @@
+.heroImagelogin {
+    width: 100vw;
+    /* 滿螢幕寬度 */
+    height: 194px;
+    /* 滿螢幕高度 */
+    margin: 0;
+    display: flex;
+    place-items: center;
+    background: url('../assets/Rectangle.jpg') lightgray 50% / cover no-repeat;
+}
+
+.Loginbutton {
+    background-color: #e5e0dd;
+    color: rgb(88, 85, 85);
+    border: none;
+    padding: 10px 45px;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px; /* 與上方物件保持 20px 的距離 */
+}
+
+.buttonContainer {
+    width: 100%; /* 撐滿登入框 */
+    display: flex;
+    justify-content: space-between; /* 按鈕之間等距分佈 */
+    gap: 10px;
+  }
+
+  boxlogin{
+    position: absolute;
+    /* 使用絕對定位 */
+    top: 50px;
+    /* 距離父容器顶部 50px */
+    /* left: 100px; 距離父容器左側 100px */
+    width: 541px;
+    /* 設定盒子的寬度為 541 像素 */
+    height: 642px;
+    /* 設定盒子的高度為 642 像素 */
+    flex-shrink: 0;
+    /* 禁止盒子在父容器中因空間不足被壓縮 */
+    background-color: #ffffff;
+    /* 設定盒子的背景顏色為白色 */
+    color: black;
+    /* 設定盒子內文字的顏色為黑色 */
+    font-size: 20px;
+    display: flex;
+    /* 設定盒子為彈性佈局 */
+    justify-content: center;
+    /* 水平居中對齊子元素 */
+    align-items: center;
+    /* 垂直居中對齊子元素 */
+    text-align: center;
+    /* 設定文字的對齊方式為居中 */
+    z-index: 2;
+    /* 背景層級*/
+}

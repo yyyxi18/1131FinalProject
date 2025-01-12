@@ -9,7 +9,10 @@ import { Helmet } from 'react-helmet';
 import { Link, useNavigate } from 'react-router-dom';
 
 const navigationItems = [
-    { text: '返回', path: '/main' },
+    { text: '', path: '/main' },
+    { text: '', path: '/main' },
+    { text: '再考慮一下👉🏿👈🏿', path: '/main' },
+
 ];
 
 export const LoginMainPage: React.FC = () => {
@@ -26,7 +29,7 @@ export const LoginMainPage: React.FC = () => {
         const { name, value } = e.target;
         setFormData({ ...formData, [name]: value });
     };
-   
+
     // 提交表單
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -74,30 +77,34 @@ export const LoginMainPage: React.FC = () => {
     const handleAnotherButtonClick = () => {
         navigate('/Main');
     };
-   
-    const handleActivityButtonClick = () => {
-        navigate('/activity');
-    };
+
 
     return (
         <div className="container">
             <Helmet>
                 <title>怕輸還不快跑</title>
             </Helmet>
-            <h1 className="title">2025 TKU IM</h1>
-            <h1 className="title">MARATHON</h1>
-            <div className="heroImagesignup"    ></div>
-            <div className="right">
 
-                <nav className="navigation">
-                    {navigationItems.map(({ text, path }) => (
-                        <Link key={path} to={path} className="navLink">
-                            {text}
-                        </Link>
-                    ))}
-                </nav>
-                
+
+            <div className="top">
+                <div className="left">
+                    <h1 className="title">2025 TKU IM</h1>
+                    <h1 className="title">MARATHON</h1>
+                </div>
+
+                <div className="right">
+                    <nav className="navigation">
+                        {navigationItems.map(({ text, path }) => (
+                            <Link key={path} to={path} className="navLink">
+                                {text}
+                            </Link>
+                        ))}
+                    </nav>
+                </div>
             </div>
+
+
+            <div className='heroImagesignup'></div>
             <div className="box">
                 <div className="boxText">報名</div>
                 <div className="form">
@@ -162,9 +169,7 @@ export const LoginMainPage: React.FC = () => {
                         <button type="submit" className="form-button" onClick={handleAnotherButtonClick}>
                             報名
                         </button>
-                        <button type="submit" className="form-button" onClick={handleActivityButtonClick}>
-                            考慮一下再報名
-                        </button>
+
 
                     </form>
                 </div>

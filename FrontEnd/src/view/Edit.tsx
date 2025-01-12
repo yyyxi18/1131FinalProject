@@ -44,7 +44,7 @@ export const Edit: React.FC = () => {
         const data = await response.json();
         setName(data.name);
         setGender(data.gender);
-        setId(data.id); // 保存 ID 到狀態
+        setId(data._id); // 保存 ID 到狀態
       } catch (error) {
         console.error('獲取資料失敗:', error);
       }
@@ -60,16 +60,16 @@ export const Edit: React.FC = () => {
     event.preventDefault();
 
     // 確認所有必填字段非空
-    if (!id || !name || !gender || !email || !phone) {
+    if (!name || !gender || !email || !phone) {
       alert('請確認所有欄位都有值');
       return;
     }
 
     try {
-      const payload = { id, name, phone, gender, email }; // 添加 ID
+      const payload = { name, phone, gender, email }; // 添加 ID
       console.log('發送的資料:', payload);
 
-      const response = await fetch('http://127.0.0.1:2004/api/v1/user/updateUserByID', {
+      const response = await fetch(`http://127.0.0.1:2004/api/v1/user/updateUserByID?id=${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',

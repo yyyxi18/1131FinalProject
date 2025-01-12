@@ -8,6 +8,7 @@ import { Helmet } from 'react-helmet';
 import additionalImage from '../assets/map.png'; // 使用 import 引入圖片
 
 const navigationItems = [
+  { text: '主頁', path: '/main' },
   { text: '活動簡章', path: '/activity' },
   { text: '活動路線', path: '/map' },
   { text: '線上客服', path: '/onlineService' },

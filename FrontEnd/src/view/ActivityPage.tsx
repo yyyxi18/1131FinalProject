@@ -7,6 +7,7 @@ import { Countdown } from '../view/CountDown'; // 引入 Countdown 組件
 import { Helmet } from 'react-helmet';
 
 const navigationItems = [
+  { text: '主頁', path: '/main' },
   { text: '活動簡章', path: '/activity' },
   { text: '活動路線', path: '/map' },
   { text: '線上客服', path: '/onlineService' },
@@ -83,7 +84,7 @@ export const ActivityPage: React.FC = () => {
           <button
             className="activitybutton"
             onClick={() => navigate('/signup')} >
-              
+
             報名
           </button>
 

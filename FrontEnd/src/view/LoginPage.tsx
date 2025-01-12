@@ -1,76 +1,141 @@
-//登入
-import React, { useState } from 'react';
-import styles from './LoginPage.module.css';
-import { InputField } from './InputField';
-import { Divider } from './Divider';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import '../style/CountDowm.css'; // 改用非模組化的 CSS
+import { Helmet } from 'react-helmet';
+import { GoogleLogin } from '@react-oauth/google';
+import axios from 'axios';
 
-interface LoginPageProps {
-  onLogin: (email: string, password: string) => void; // 傳入登入函數
-}
 
-export const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+export const LoginMainPage: React.FC = () => {
+  const [timeLeft, setTimeLeft] = useState({ hours: 0, minutes: 0, seconds: 0 });
+  const targetDate = new Date('2025-07-24T00:00:00'); // 設定倒數目標日期
+  const navigate = useNavigate();
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault(); // 防止默認表單提交行為
-    onLogin(email, password); // 調用傳入的 onLogin 函數，傳遞 email 和 password
+  const handleGoogleLoginSuccess = async (response: any) => {
+    console.log('Google Login Success:', response);
+    /**
+     * 保存jwt
+     */
+    localStorage.setItem("token",response.credential)
+    try {
+      // 假設 response.credential 包含 Google 返回的 JWT Token
+      const res = await axios.post('http://localhost:2004/api/v1/user/check', {
+        /**
+         * response.credential => jwt
+         * 持久化
+         * localstorge
+         */
+        token: response.credential,
+      });
+
+      console.log('API 回應:', res.data);
+
+      // 登入成功後跳轉至主頁面
+      navigate('/Mainpage');
+    } catch (error) {
+      console.error('Google 登入 API 發送失敗:', error);
+    }
   };
 
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const now = new Date();
+      const difference = targetDate.getTime() - now.getTime();
+
+      if (difference > 0) {
+        const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((difference / (1000 * 60)) % 60);
+        const seconds = Math.floor((difference / 1000) % 60);
+        setTimeLeft({ hours, minutes, seconds });
+      } else {
+        clearInterval(interval);
+        setTimeLeft({ hours: 0, minutes: 0, seconds: 0 });
+      }
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [targetDate]);
+
+
+  // 跳轉到其他頁面
+  const handleAnotherButtonClick = () => {
+    navigate('/Main'); // 跳轉到指定頁
+  };
+
+  const handleuserButtonClick = () => {
+    navigate('/user'); // 跳轉到指定頁
+  };
+
+  function handleGoogleLoginFailure(): void {
+    throw new Error('Function not implemented.');
+  }
+
   return (
-    <div className={styles.container}>
-      <div className={styles.mainContent}>
-        <img
-          loading="lazy"
-          src="https://cdn.builder.io/api/v1/image/assets/TEMP/6403f477ccb6a76c6be4a7b9bf97f46988d258850c732a633c527aa0ca86c034?placeholderIfAbsent=true&apiKey=2ae34a784b504fd09cd9cc5215760974"
-          className={styles.backgroundImage}
-          alt=""
+    <div className="container">
+
+
+      <Helmet>
+        <title>怕輸還不快跑</title>
+      </Helmet>
+      {/*<div className="blurBackground"></div>
+
+      <div className="countdownSection">
+        <div className="deadlineText">剩餘報名截止日期</div>
+        <Countdown
+          hours={timeLeft.hours}
+          minutes={timeLeft.minutes}
+          seconds={timeLeft.seconds}
         />
-        <h1 className={styles.title}>登入</h1>
+      </div> */}
 
-        <form className={styles.formContainer} onSubmit={handleSubmit}>
-          <InputField
-            label="Email"
-            type="email"
-            id="email"
-            value={email} // 綁定 email 狀態
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value)} // 更新 email 狀態
+      <h1 className="title">2025 TKU IM </h1>
+      <h1 className="title">MARATHON </h1>
+      {/*
+      <div className="heroImage">
+        <div className="sloganContainer">
+          <div className="slogan">怕輸 ! 還不快跑</div>
+          <div className="slogan2">怕輸 ! 還不快跑</div>
+        </div>
+      </div>
+*/}
+      <div className="heroImage"></div>
+
+      <div className="box">
+
+
+        <div className="boxText">
+          登入
+        </div>
+        <div className="festlogin">
+
+
+          <div className="loginText">
+            快速登入
+          </div>
+
+
+
+          <GoogleLogin
+            onSuccess={handleGoogleLoginSuccess}
+            onError={handleGoogleLoginFailure}
           />
-          <InputField
-            label="Password"
-            type="password"
-            id="password"
-            value={password} // 綁定 password 狀態
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value)} // 更新 password 狀態
-          />
 
 
-          <button
-            type="submit"
-            className={styles.loginButton}
-            aria-label="Login"
-          >
-            登入
-          </button>
 
-          <Divider className={styles.separator} />
-
-          <div className={styles.socialContainer}>
-            <Divider className={styles.divider} />
-            <button
-              className={styles.googleButton}
-              aria-label="Login with Google"
-              onClick={() => {
-                window.location.href = 'http://localhost:2004/google'; // 替換為後端的 Google OAuth 路徑
-              }}
-            >
-              G
+<div className="buttonContainer">
+            <button className="Loginbutton" onClick={handleAnotherButtonClick}>
+              訪客登入
             </button>
 
-            <Divider className={styles.divider} />
-          </div>
-        </form>
+            <button className="Loginbutton" onClick={handleuserButtonClick}>
+              開發人員登入
+            </button>
+            </div>
+        </div>
       </div>
     </div>
   );
 };
+
+export default LoginMainPage;

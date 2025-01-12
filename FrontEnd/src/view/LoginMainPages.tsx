@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../style/CountDowm.css'; // 改用非模組化的 CSS
+import '../style/Login.css';
 import { Helmet } from 'react-helmet';
 import { GoogleLogin } from '@react-oauth/google';
 import axios from 'axios';
@@ -19,7 +20,9 @@ export const LoginMainPage: React.FC = () => {
     localStorage.setItem("token",response.credential)
     try {
       // 假設 response.credential 包含 Google 返回的 JWT Token
-      const res = await axios.post('http://localhost:2004/api/v1/user/check', {
+      const res = await axios.post('http://localhost:5173/api/v1/user/check', {
+
+        // http://localhost:5173/
         /**
          * response.credential => jwt
          * 持久化
@@ -31,7 +34,7 @@ export const LoginMainPage: React.FC = () => {
       console.log('API 回應:', res.data);
 
       // 登入成功後跳轉至主頁面
-      navigate('/Mainpage');
+      navigate('/main');
     } catch (error) {
       console.error('Google 登入 API 發送失敗:', error);
     }
@@ -99,7 +102,7 @@ export const LoginMainPage: React.FC = () => {
         </div>
       </div>
 */}
-      <div className="heroImage"></div>
+      <div className="heroImagelogin"></div>
 
       <div className="box">
 
