@@ -1,10 +1,7 @@
-
 import { Service } from "../abstract/Service";
 import { PeopleRun } from "../interfaces/PeopleRun";
 import { logger } from "../middlewares/log";
 import { peopleModel } from "../orm/schemas/peopleSchemas";
-import { Document } from "mongoose"
-import { MongoDB } from "../utils/MongoDB";
 import { DBResp } from "../interfaces/DBResp";
 import { resp } from "../utils/resp";
 
@@ -16,98 +13,100 @@ type seatInfo = {
 
 export class UserService extends Service {
 
+    /**
+     * 獲取所有參賽者
+     */
     public async getAllPeople(): Promise<Array<DBResp<PeopleRun>> | undefined> {
         try {
             const res: Array<DBResp<PeopleRun>> = await peopleModel.find({});
             return res;
         } catch (error) {
+            logger.error("Error fetching all participants", error);
             return undefined;
         }
     }
 
     /**
      * 新增參賽者
-     * @param info 參賽者資訊
-     * @returns resp
      */
     public async addPerson(info: PeopleRun): Promise<resp<DBResp<PeopleRun> | undefined>> {
-        const current = await this.getAllPeople();
-        const resp: resp<DBResp<PeopleRun> | undefined> = {
+        const response: resp<DBResp<PeopleRun> | undefined> = {
             code: 200,
             message: "",
             body: undefined
         };
 
-        if (current && current.length > 0) {
-            try {
-                const nameValidator = await this.validatePersonData(info);
-                if (current.length >= 500) {
-                    resp.message = "participant list is full";
-                    resp.code = 403;
-                } else {
-                    if (nameValidator === "驗證通過") {
-                        info.no = String(current.length + 1);
-                        info._id = undefined;
-                        const res = new peopleModel(info);
-                        resp.body = await res.save();
-                    } else {
-                        resp.code = 403;
-                        resp.message = nameValidator;
-                    }
-                }
-            } catch (error) {
-                resp.message = "server error";
-                resp.code = 500;
+        try {
+            const participants = await this.getAllPeople();
+
+            if (!participants) {
+                response.code = 500;
+                response.message = "Failed to retrieve participant list.";
+                return response;
             }
-        } else {
-            resp.message = "server error";
-            resp.code = 500;
+
+            if (participants.length >= 500) {
+                response.code = 403;
+                response.message = "Participant list is full.";
+                return response;
+            }
+
+            const validationMessage = await this.validatePersonData(info);
+            if (validationMessage !== "驗證通過") {
+                response.code = 403;
+                response.message = validationMessage;
+                return response;
+            }
+
+            info.no = String(participants.length + 1);
+            info._id = undefined;
+
+            const newParticipant = new peopleModel(info);
+            response.body = await newParticipant.save();
+            response.message = "Participant added successfully.";
+
+        } catch (error) {
+            logger.error("Error adding participant", error);
+            response.code = 500;
+            response.message = "Server error while adding participant.";
         }
 
-        return resp;
+        return response;
     }
 
     /**
-     * 查詢一筆用戶
-     * @param id 用戶 _id
-     * @returns resp<any>
+     * 查詢用戶資料 - 根據 ID
      */
-
     public async getPersonByID(id: string): Promise<resp<any>> {
-        const resp: resp<any> = {
+        const response: resp<any> = {
             code: 200,
             message: "",
-            body: null, // 預設查詢結果為 null
+            body: null
         };
 
         try {
-            // 使用模型方法查詢用戶
-            const result = await peopleModel.findOne({ _id: id });
+            const result = await peopleModel.findById(id);
 
             if (!result) {
-                // 如果找不到用戶
-                resp.code = 404;
-                resp.message = "No user found with the provided ID";
+                response.code = 404;
+                response.message = "No user found with the provided ID.";
             } else {
-                // 如果找到用戶
-                resp.body = result; // 返回用戶數據
-                resp.message = "Success";
+                response.body = result;
+                response.message = "Success.";
             }
+
         } catch (error) {
-            // 捕捉錯誤
-            resp.code = 500;
-            resp.message = `Server error: ${error}`;
+            logger.error("Error fetching user by ID", error);
+            response.code = 500;
+            response.message = `Server error: ${error}`;
         }
 
-        return resp;
+        return response;
     }
 
     /**
-* 根據 Email 和電話查詢參賽者
-* @param email 用戶 Email
-* @param phone 用戶電話
-* @returns resp<any>
-*/
+     * 查詢用戶資料 - 根據 Email 和電話
+     */
     public async getPersonByEmailAndPhone(email: string, phone: string): Promise<resp<any>> {
         const response: resp<any> = {
             code: 200,
@@ -116,64 +115,59 @@ export class UserService extends Service {
         };
 
         try {
-            // 查詢符合條件的參賽者
             const result = await peopleModel.findOne({ email, phone });
-
+            logger.info(`查詢結果: ${JSON.stringify(result)}`); // 增加日誌
+            
             if (!result) {
-                // 如果查無此人
                 response.code = 404;
-                response.message = "No user found with the provided email and phone";
+                response.message = "No user found with the provided email and phone.";
             } else {
-                // 查詢成功，回傳資料
                 response.body = result;
-                response.message = "Success";
+                response.message = "Success.";
             }
+
         } catch (error) {
-            // 捕捉查詢過程中的錯誤
+            logger.error("Error fetching user by email and phone", error);
             response.code = 500;
             response.message = `Server error: ${error}`;
-            logger.error("Error fetching person by email and phone:", error);
         }
 
         return response;
     }
 
-
     /**
-     * 參賽者取消報名
-     * @param id 用戶 _id
-     * @returns resp<any>
+     * 取消參賽者報名
      */
     public async cancelRunByID(id: string): Promise<resp<any>> {
-        const resp: resp<any> = {
+        const response: resp<any> = {
             code: 200,
             message: "",
-            body: null,
+            body: null
         };
 
         try {
             const result = await peopleModel.findByIdAndDelete(id);
 
             if (!result) {
-                resp.code = 404;
-                resp.message = "No user found with the provided ID";
+                response.code = 404;
+                response.message = "No user found with the provided ID.";
             } else {
-                resp.body = result;
-                resp.message = "User cancel successfully";
+                response.body = result;
+                response.message = "User canceled successfully.";
             }
+
         } catch (error) {
-            resp.code = 500;
-            resp.message = `Server error: ${error}`;
+            logger.error("Error canceling user participation", error);
+            response.code = 500;
+            response.message = `Server error: ${error}`;
         }
 
-        return resp;
+        return response;
     }
 
     /**
- * 驗證新增參賽者的資料
- * @param person 新增的參賽者資料
- * @returns 驗證結果
- */
+     * 驗證參賽者資料
+     */
     public async validatePersonData(person: PeopleRun): Promise<
         '姓名不得為空' |
         '電話格式不正確，必須為 10 位數字' |
@@ -181,23 +175,19 @@ export class UserService extends Service {
         '電子郵件格式不正確' |
         '驗證通過'
     > {
-        // 檢查姓名
         if (!person.name || person.name.trim() === '') {
             return '姓名不得為空';
         }
 
-        // 檢查電話格式（10 位數字）
         const phonePattern = /^09\d{8}$/;
         if (!phonePattern.test(person.phone)) {
             return '電話格式不正確，必須為 10 位數字';
         }
 
-        // 檢查性別
         if (person.gender !== '男' && person.gender !== '女') {
             return '性別必須為 男 或 女';
         }
 
-        // 檢查電子郵件格式
         const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailPattern.test(person.email)) {
             return '電子郵件格式不正確';
@@ -207,42 +197,41 @@ export class UserService extends Service {
     }
 
     /**
-     * 更新參賽者資料
-     * @param id 用戶 _id
-     * @param info 更新的參賽者資料
-     * @returns resp<any>
+     * 更新用戶資料
      */
     public async updateUserByID(id: string, info: PeopleRun): Promise<resp<any>> {
-        const resp: resp<any> = {
+        const response: resp<any> = {
             code: 200,
             message: "",
-            body: null,
+            body: null
         };
 
         try {
-            const nameValidator = await this.validatePersonData(info);
-            if (nameValidator !== "驗證通過") {
-                resp.code = 403;
-                resp.message = nameValidator;
-                return resp;
+            logger.info(`Received update request: ID=${id}, Info=${JSON.stringify(info)}`);
+
+            const validationMessage = await this.validatePersonData(info);
+            if (validationMessage !== "驗證通過") {
+                response.code = 403;
+                response.message = validationMessage;
+                return response;
             }
 
-            const result = await peopleModel.findByIdAndUpdate(id, info, { new: true });
+            const updatedUser = await peopleModel.findByIdAndUpdate(id, info, { new: true });
 
-            if (!result) {
-                resp.code = 404;
-                resp.message = "No user found with the provided ID";
+            if (!updatedUser) {
+                response.code = 404;
+                response.message = "No user found with the provided ID.";
             } else {
-                resp.body = result;
-                resp.message = "User updated successfully";
+                response.body = updatedUser;
+                response.message = "User updated successfully.";
             }
+
         } catch (error) {
-            resp.code = 500;
-            resp.message = `Server error: ${error}`;
+            logger.error("Error updating user", error);
+            response.code = 500;
+            response.message = `Server error: ${error}`;
         }
 
-        return resp;
+        return response;
     }
-
-
 }

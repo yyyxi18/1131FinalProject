@@ -44,7 +44,7 @@ export const Edit: React.FC = () => {
         const data = await response.json();
         setName(data.name);
         setGender(data.gender);
-        setId(data.id); // 保存 ID 到狀態
+        setId(data._id); // 保存 ID 到狀態
       } catch (error) {
         console.error('獲取資料失敗:', error);
       }
