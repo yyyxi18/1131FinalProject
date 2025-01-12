@@ -31,7 +31,7 @@ export const LoginMainPage: React.FC = () => {
       console.log('API 回應:', res.data);
 
       // 登入成功後跳轉至主頁面
-      navigate('/Mainpage');
+      navigate('/');
     } catch (error) {
       console.error('Google 登入 API 發送失敗:', error);
     }

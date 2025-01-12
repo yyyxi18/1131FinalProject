@@ -48,6 +48,7 @@ export const LoginMainPage: React.FC = () => {
       }
 
       alert("新增成功！");
+      navigate('/'); // 跳轉到指定頁面
 
       // 清空表單
       setFormData({
